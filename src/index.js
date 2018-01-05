@@ -1,1 +1,1 @@
-import './style.scss';
+console.log("Yep, working");
