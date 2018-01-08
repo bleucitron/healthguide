@@ -5,6 +5,14 @@ $header-margin: 48px;
 $button-color: #0073be;
 $text-color-dark: #818181;
 $header-height: 100px;
+$footer-height: 80px;
+
+$logo-size: 64px;
+
+//$section-color: #0B1F52;
+$section-color-1: rgba(11, 31, 82, 1);
+$section-color-2: rgba(11, 31, 82, 0.666);
+$section-color-3: rgba(11, 31, 82, 0.333);
 
 body, html {
   background: white;
@@ -21,7 +29,82 @@ html, body, .viewport {
 
 .main {
   flex: auto;
-  background: lightsalmon;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0 5px;
+
+  .apps-section {
+    flex: auto;
+    color: white;
+    padding: 0 15px;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:nth-child(1) {
+      background-color: $section-color-1;
+    }
+
+    &:nth-child(2) {
+      background-color: $section-color-2;
+    }
+
+    &:nth-child(3) {
+      background-color: $section-color-3;
+    }
+
+    .apps-section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .app-container {
+      flex:1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      &.app-guide .app-icon:after {
+        content: "Guide";
+      }
+
+      &.app-exercise .app-icon:after {
+        content: "Exercise";
+      }
+
+      .app-icon:after {
+        font-size: smaller;
+        margin-top: 5px;
+      }
+
+      .app-icon, .app-title {
+        font-weight: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .app-icon {
+        flex: 1;
+        margin-bottom: 5px;
+        img {
+          height: 100%;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 40px;
+      }
+    }
+  }
 }
 
 header, footer {
@@ -56,7 +139,7 @@ header {
 }
 
 footer {
-  height: 64px;
+  height: $footer-height;
   position: relative;
 
   .disclaimer {
@@ -69,8 +152,8 @@ footer {
   .logo {
     z-index: 10;
     position: absolute;
-    width: 96px;
-    height: 96px;
+    width: auto;
+    height: $logo-size;
     right: 0;
     bottom: 0;
     padding: 16px;
@@ -85,10 +168,10 @@ footer {
 }
 
 button {
-  height: 64px;
+  max-height: 64px;
   text-transform: uppercase;
   font-size: xx-large;
-  padding: 0 18px;
+  padding: 6px 18px;
   border: none;
   background: $button-color;
   border-radius: 16px;
