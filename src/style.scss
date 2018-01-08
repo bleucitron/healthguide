@@ -19,30 +19,45 @@ body, html {
   font-family: 'Quicksand';
 }
 
-html, body, .viewport {
+@mixin flex-col {
   display: flex;
   flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin fix-centered-h {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+html, .viewport {
+  @include flex-col;
   width: 100%;
   height: 100%;
   margin: 0;
 }
 
 .main {
-  flex: auto;
+  @include flex-row;
+  flex: 1 1 0;
   background: white;
-  display: flex;
-  flex-direction: row;
   align-items: stretch;
+  justify-items: center;
   padding: 0 5px;
 
   .apps-section {
-    flex: auto;
+    @include flex-col;
+    flex: 1 1 0;
     color: white;
     padding: 0 15px;
     margin: 0 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    justify-items: center;
 
     &:nth-child(1) {
       background-color: $section-color-1;
@@ -57,20 +72,23 @@ html, body, .viewport {
     }
 
     .apps-section-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex: 0 0 auto;
       text-align: center;
       text-transform: uppercase;
       margin-bottom: 40px;
     }
 
     .app-container {
-      flex:1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+      @include flex-col;
+      flex:1 1 0;
+      align-items: stretch;
+      justify-items: center;
+
+      .app-title {
+        flex: 0 0 auto;
+        font-weight: normal;
+        text-align: center;
+      }
 
       &.app-guide .app-icon:after {
         content: "Guide";
@@ -80,23 +98,22 @@ html, body, .viewport {
         content: "Exercise";
       }
 
-      .app-icon:after {
-        font-size: smaller;
-        margin-top: 5px;
-      }
-
-      .app-icon, .app-title {
-        font-weight: normal;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
       .app-icon {
-        flex: 1;
+        flex: 1 1 0;
         margin-bottom: 5px;
+        position: relative;
         img {
-          height: 100%;
+          width: auto;
+          max-height: 100%;
+          position: absolute;
+          top: 0;
+          @include fix-centered-h;
+        }
+        &:after {
+          font-size: smaller;
+          position: absolute;
+          bottom: -20px;
+          @include fix-centered-h;
         }
       }
 
@@ -108,11 +125,11 @@ html, body, .viewport {
 }
 
 header, footer {
+  @include flex-row;
+  flex: 0 0 auto;
   margin-left: $header-margin;
   margin-right: $header-margin;
 
-  display: flex;
-  flex-direction: row;
   align-items: center;
 
   p, h1, h2, h3, h4, h5 {
@@ -127,14 +144,15 @@ header {
   button {
     z-index: 10;
     position: absolute;
+    left: 0;
+    bottom: 50%;
+    transform: translate(0, 50%);
   }
 
   h1 {
     font-weight: normal;
-
-    display: flex;
-    flex: auto;
-    justify-content: center;
+    flex: 1 1 0;
+    text-align: center;
   }
 }
 
@@ -143,9 +161,7 @@ footer {
   position: relative;
 
   .disclaimer {
-    display: flex;
-    flex: auto;
-    justify-content: center;
+    flex: 1 1 0;
     text-align: center;
   }
 
