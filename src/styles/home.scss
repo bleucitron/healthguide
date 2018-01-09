@@ -1,0 +1,112 @@
+//$section-color: #0B1F52;
+$section-color-1: rgba(11, 31, 82, 1);
+$section-color-2: rgba(11, 31, 82, 0.666);
+$section-color-3: rgba(11, 31, 82, 0.333);
+
+#home {
+  @include flex-col;
+  flex: 1 1 0;
+  background: white;
+  align-items: stretch;
+  justify-items: stretch;
+  padding: 0 5px;
+
+  .section {
+    flex: 1 1 0;
+    color: white;
+    margin: 0 5px;
+    padding: 0 10px;
+
+    &:nth-child(1) {
+      background-color: $section-color-1;
+    }
+
+    &:nth-child(2) {
+      background-color: $section-color-2;
+    }
+
+    &:nth-child(3) {
+      background-color: $section-color-3;
+    }
+  }
+
+  .section-row {
+    @include flex-row;
+    align-items: stretch;
+    justify-items: center;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .section-padding-row {
+    flex: 0 0 auto;
+    height: 24px;
+  }
+
+  .section-titles-row {
+    flex: 0 0 auto;
+  }
+  .section-apps-row {
+    flex: 1 1 0;
+  }
+
+  .section-title {
+    text-transform: uppercase;
+  }
+
+  .app-container {
+    padding: 1px 20px;
+    @include flex-col;
+  }
+
+  .app-title h3 {
+    font-weight: normal;
+    text-align: center;
+    margin: 0 0 10px;
+  }
+
+  .app {
+    flex: 1 1 0;
+    @include flex-col;
+
+    &:after {
+      font-size: smaller;
+      margin: 5px 0;
+    }
+
+    &.app-guide:after {
+      content: "Guide";
+    }
+
+    &.app-exercise:after {
+      content: "Exercice";
+    }
+
+    .app-icon {
+      flex: 1 1 0;
+      margin-top: 5px;
+      position: relative;
+      min-height: 96px;
+
+      img {
+        width: auto;
+        max-height: 100%;
+        position: absolute;
+        bottom: 0;
+        @include fix-centered-h;
+      }
+
+      &:after {
+        font-size: smaller;
+        position: absolute;
+        bottom: -20px;
+        @include fix-centered-h;
+      }
+    }
+
+    &:hover {
+      outline: 1px solid white;
+      cursor: pointer;
+    }
+  }
+}

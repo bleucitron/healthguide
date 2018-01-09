@@ -12,7 +12,7 @@ module.exports = {
     context: path.resolve(__dirname, "src"),
     entry: [
         './index.js',
-        './style.scss',
+        './styles/style.scss',
         './index.html'
     ],
     output: {
@@ -43,7 +43,7 @@ module.exports = {
                 }])
             },
             {
-                test: path.join(__dirname, "src", "style.scss"),
+                test: path.join(__dirname, "src", "styles", "style.scss"),
                 use: cssExtractor.extract({
                     use: [
                         "css-loader",
