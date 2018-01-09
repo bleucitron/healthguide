@@ -6,12 +6,15 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "develop": "webpack-dev-server --open firefox",
+    "develop": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "extract-loader": "^1.0.1",
@@ -22,6 +25,6 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^2.7.1"
   }
 }

@@ -68,6 +68,22 @@ module.exports = {
                         name: '[path][name].[ext]'
                     }
                 }]
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['env', {
+                                "targets": {
+                                    "browsers": ["Firefox <= 38.4.0"]
+                                }
+                            }]
+                        ]
+                    }
+                }
             }
         ]
     }
