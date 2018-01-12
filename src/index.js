@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", event => {
                 if ('name' in params && params.name !== 'home' && params.name in appsTemplates) {
                     setPage(appsTemplates[params.name]);
                 } else {
-                    router.navigate();
+                    gotoHome();
                 }
             }
         }, {
