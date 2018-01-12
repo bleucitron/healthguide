@@ -1,0 +1,10 @@
+#app-exercise-stress {
+  flex: 1 1 0;
+  position: relative;
+  .app-video {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    @include fix-centered-h;
+  }
+}

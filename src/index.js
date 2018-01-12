@@ -1,44 +1,46 @@
 import 'nodelist-foreach-polyfill';
 
-const homeTemplate = require('./views/home.html');
+import Navigo from 'navigo';
 
-function showHomeButtons() {
-    document.querySelectorAll(".home-button")
-        .forEach(button => {
-            button.classList.remove("hidden");
-        });
+import {showHomeButtons, hideHomeButtons, setContent, setTitle} from './libs/dom-tools';
+
+const router = new Navigo(null, true);
+
+function startApp(name) {
+    router.navigate(router.generate('app', {name: name}));
 }
 
-function hideHomeButtons() {
-    document.querySelectorAll(".home-button")
-        .forEach(button => {
-            button.classList.add("hidden");
-        });
+function gotoHome() {
+    router.navigate();
+}
+
+const appsTemplates = {
+    home: {
+        title: "Nom de l'application",
+        content: require('./views/home.html'),
+        setup: function() {
+            document.querySelectorAll(".app").forEach(app => {
+                app.addEventListener("click", ev => {
+                    startApp(ev.currentTarget.id);
+                });
+            });
+        }
+    },
+    'app-exercise-stress': {
+        title: "Réduction du stress",
+        content: require('./views/app-exercise-stress.html')
+    }
+};
+
+function setPage(app){
+    setContent(app.content);
+    setTitle(app.title);
+    if ('setup' in app) {
+        app.setup();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", event => {
-    const container = document.getElementById("main-container");
-
-    function setContent(content) {
-        container.innerHTML = content;
-    }
-
-    function startApp(title) {
-        setContent(`<div>The app ${title}</div>`);
-        showHomeButtons();
-    }
-
-    function gotoHome() {
-        setContent(homeTemplate);
-        hideHomeButtons();
-
-        // setup apps listeners
-        document.querySelectorAll(".app").forEach(app => {
-            app.addEventListener("click", ev => {
-                startApp(ev.currentTarget.id);
-            });
-        });
-    }
 
     // setup home button
     document.querySelectorAll(".home-button")
@@ -46,5 +48,21 @@ document.addEventListener("DOMContentLoaded", event => {
             button.addEventListener("click", gotoHome);
         });
 
-    gotoHome();
+    router
+        .on(() => setPage(appsTemplates.home), {
+            after: hideHomeButtons,
+            leave: showHomeButtons
+        })
+        .on('app/:name', {
+            as: 'app',
+            uses: function (params) {
+                if ('name' in params && params.name !== 'home' && params.name in appsTemplates) {
+                    setPage(appsTemplates[params.name]);
+                } else {
+                    router.navigate();
+                }
+            }
+        })
+        .notFound(gotoHome)
+        .resolve();
 });

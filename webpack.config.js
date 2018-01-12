@@ -54,7 +54,7 @@ module.exports = {
                     loader: "html-loader",
                     options: {
                         interpolate: true,
-                        attrs: ["img:src"]
+                        attrs: ["img:src", "video:src", 'source:src']
                     }
                 }
             },
@@ -77,7 +77,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|mp4)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -100,6 +100,11 @@ module.exports = {
                         ]
                     }
                 }
+            },
+            {
+                test: /\.js$/,
+                use: ["source-map-loader"],
+                enforce: "pre"
             }
         ]
     }
