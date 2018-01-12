@@ -2,6 +2,8 @@ const path = require('path');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+
 
 const cssExtractor = new ExtractTextPlugin("style.css");
 const indexHtmlExtractor = new ExtractTextPlugin("index.html");
@@ -27,7 +29,10 @@ module.exports = {
     plugins: [
         cssExtractor,
         indexHtmlExtractor,
-        new CleanWebpackPlugin(buildPath)
+        new CleanWebpackPlugin(buildPath),
+        new WriteFilePlugin({
+            test: /\.js$/
+        })
     ],
     module: {
         rules: [
@@ -41,6 +46,17 @@ module.exports = {
                         attrs: ["img:src"]
                     }
                 }])
+            },
+            {
+                test: /\.html$/,
+                exclude: /index\.html/,
+                use: {
+                    loader: "html-loader",
+                    options: {
+                        interpolate: true,
+                        attrs: ["img:src"]
+                    }
+                }
             },
             {
                 test: path.join(__dirname, "src", "styles", "style.scss"),
