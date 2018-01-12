@@ -17,7 +17,7 @@ function setContent(content) {
 }
 
 function setTitle(title) {
-    return document.getElementById("page-title").innerText = title;
+    return document.getElementById("page-title").textContent = title;
 }
 
 export {showHomeButtons, hideHomeButtons, setContent, setTitle};

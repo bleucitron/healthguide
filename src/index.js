@@ -33,6 +33,7 @@ const appsTemplates = {
 };
 
 function setPage(app){
+    console.log(app);
     setContent(app.content);
     setTitle(app.title);
     if ('setup' in app) {
@@ -62,6 +63,8 @@ document.addEventListener("DOMContentLoaded", event => {
                     router.navigate();
                 }
             }
+        }, {
+            after: showHomeButtons
         })
         .notFound(gotoHome)
         .resolve();
