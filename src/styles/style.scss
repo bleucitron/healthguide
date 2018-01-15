@@ -126,6 +126,14 @@ footer {
   visibility: hidden;
 }
 
+.transparent {
+  opacity: 0;
+}
+
+.faded {
+  opacity: 0.5;
+}
+
 button {
   text-transform: uppercase;
   font-size: xx-large;

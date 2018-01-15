@@ -1,12 +1,4 @@
 
-.transparent {
-  opacity: 0;
-}
-
-.faded {
-  opacity: 0.5;
-}
-
 #app-guide-workspace {
   background-color: $background-color;
   flex: 1 1 0;
@@ -14,10 +6,7 @@
 
   .app-illustrations {
     flex: 1;
-    margin-top: 20px;
-    margin-right: 5%;
-    margin-left: 10%;
-    margin-bottom: 20px;
+    margin: 20px 5% 20px 10%;
 
     position: relative;
     img {
@@ -34,7 +23,7 @@
 
     margin-right: 5%;
 
-    font-size: xx-large;
+    font-size: x-large;
     font-size: 1.8vw;
 
     li {
