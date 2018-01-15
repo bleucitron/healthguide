@@ -1,7 +1,7 @@
-//$section-color: #0B1F52;
-$section-color-1: rgba(11, 31, 82, 1);
-$section-color-2: rgba(11, 31, 82, 0.666);
-$section-color-3: rgba(11, 31, 82, 0.333);
+
+$section-color-1: $background-color;
+$section-color-2: rgba($background-color, 0.666);
+$section-color-3: rgba($background-color, 0.333);
 
 #home {
   @include flex-col;
@@ -13,7 +13,6 @@ $section-color-3: rgba(11, 31, 82, 0.333);
 
   .section {
     flex: 1 1 0;
-    color: white;
     margin: 0 5px;
     padding: 0 10px;
 

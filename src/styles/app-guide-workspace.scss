@@ -1,0 +1,33 @@
+
+#app-guide-workspace {
+  background-color: $background-color;
+  flex: 1 1 0;
+  @include flex-row;
+
+  .app-illustration {
+    flex: 1;
+    margin-top: 20px;
+    margin-right: 5%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+
+    position: relative;
+    img {
+      max-height: 100%;
+      position: absolute;
+      bottom: 0;
+      @include fix-centered-h;
+    }
+  }
+
+  .app-instructions {
+    flex: 2;
+    @include flex-col;
+    justify-content: space-around;
+
+    margin-right: 5%;
+
+    font-size: xx-large;
+    font-size: 1.8vw;
+  }
+}

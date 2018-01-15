@@ -1,11 +1,14 @@
 @import "fonts";
 
+$background-color: #0B1F52;
+
 $header-margin: 48px;
 
 $button-color: #0073be;
 $text-color-dark: #818181;
-$header-height: 100px;
-$footer-height: 80px;
+
+$header-height: 80px;
+$footer-height: 60px;
 
 $logo-size: 64px;
 
@@ -38,6 +41,7 @@ html, .viewport {
 }
 
 #main-container {
+  color: white;
   flex: 1 1 0;
   @include flex-col;
 }
@@ -68,7 +72,8 @@ header {
   }
 
   h1 {
-    font-weight: normal;
+    font-weight: bold;
+    font-size: xx-large;
     flex: 1 1 0;
     text-align: center;
   }
@@ -106,15 +111,18 @@ footer {
 }
 
 button {
-  height: 48px;
   text-transform: uppercase;
   font-size: xx-large;
+  font-weight: bold;
+  font-family: 'Quicksand';
+
   padding: 6px 18px;
+
   border: none;
   background: $button-color;
-  border-radius: 24px;
+  border-radius: 12px;
   color: white;
-  font-family: 'Quicksand';
+
   text-decoration: none;
   user-select: none;
 
@@ -131,5 +139,5 @@ button {
 }
 
 @import "home";
-
 @import "app-exercise-stress";
+@import "app-guide-workspace";
