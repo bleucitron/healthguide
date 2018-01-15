@@ -12,12 +12,9 @@ function hideHomeButtons() {
         });
 }
 
-function setContent(content) {
-    return document.getElementById("main-container").innerHTML = content;
+function setPage(title, content) {
+    document.getElementById("page-title").textContent = title;
+    document.getElementById("main-container").innerHTML = content;
 }
 
-function setTitle(title) {
-    return document.getElementById("page-title").textContent = title;
-}
-
-export {showHomeButtons, hideHomeButtons, setContent, setTitle};
+export {showHomeButtons, hideHomeButtons, setPage};
