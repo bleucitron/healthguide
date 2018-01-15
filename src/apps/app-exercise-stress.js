@@ -4,8 +4,9 @@ const app = {
     title: "Réduction du stress",
     content: require('../views/app-exercise-stress.html'),
     setup: function(){
-        document.querySelector("video.app-video")
-            .addEventListener('ended', router.gotoHome);
+        const video = document.querySelector("video.app-video");
+        video.addEventListener('ended', router.gotoHome);
+        video.addEventListener('canplay', () => video.classList.remove("transparent"))
     }
 };
 
