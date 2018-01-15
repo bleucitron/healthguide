@@ -12,6 +12,9 @@ $footer-height: 60px;
 
 $logo-size: 64px;
 
+$text-color-bright: white;
+$text-color-bright-fade: rgba($text-color-bright, 0.66);
+
 body, html {
   background: white;
   font-family: 'Quicksand';
@@ -33,6 +36,19 @@ body, html {
   transform: translateX(-50%);
 }
 
+@mixin fix-centered-v {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin fix-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 html, .viewport {
   @include flex-col;
   width: 100%;
@@ -41,7 +57,7 @@ html, .viewport {
 }
 
 #main-container {
-  color: white;
+  color: $text-color-bright;
   flex: 1 1 0;
   @include flex-col;
 }
@@ -121,7 +137,7 @@ button {
   border: none;
   background: $button-color;
   border-radius: 12px;
-  color: white;
+  color: $text-color-bright;
 
   text-decoration: none;
   user-select: none;

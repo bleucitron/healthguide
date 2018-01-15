@@ -1,10 +1,18 @@
 
+.transparent {
+  opacity: 0;
+}
+
+.faded {
+  opacity: 0.5;
+}
+
 #app-guide-workspace {
   background-color: $background-color;
   flex: 1 1 0;
   @include flex-row;
 
-  .app-illustration {
+  .app-illustrations {
     flex: 1;
     margin-top: 20px;
     margin-right: 5%;
@@ -14,9 +22,8 @@
     position: relative;
     img {
       max-height: 100%;
-      position: absolute;
-      bottom: 0;
-      @include fix-centered-h;
+      @include fix-centered;
+      transition: opacity 0.2s ease-in-out;
     }
   }
 
@@ -29,5 +36,9 @@
 
     font-size: xx-large;
     font-size: 1.8vw;
+
+    li {
+      transition: opacity 0.2s ease-in-out;
+    }
   }
 }
