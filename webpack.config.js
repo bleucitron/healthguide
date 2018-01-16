@@ -10,7 +10,7 @@ const indexHtmlExtractor = new ExtractTextPlugin("index.html");
 
 const buildPath = path.resolve(__dirname, 'dist');
 
-module.exports = {
+const config = {
     context: path.resolve(__dirname, "src"),
     entry: [
         './index.js',
@@ -20,11 +20,6 @@ module.exports = {
     output: {
         path: buildPath,
         filename: "bundle.js"
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: buildPath,
-        watchContentBase: true
     },
     plugins: [
         cssExtractor,
@@ -39,13 +34,13 @@ module.exports = {
             {
                 test: path.join(__dirname, "src", "index.html"),
                 use: indexHtmlExtractor.extract([
-                {
-                    loader: "html-loader",
-                    options: {
-                        interpolate: true,
-                        attrs: ["img:src"]
-                    }
-                }])
+                    {
+                        loader: "html-loader",
+                        options: {
+                            interpolate: true,
+                            attrs: ["img:src"]
+                        }
+                    }])
             },
             {
                 test: /\.html$/,
@@ -109,3 +104,13 @@ module.exports = {
         ]
     }
 };
+
+if (process.env.NODE_ENV !== 'production') {
+    config.devtool = 'inline-source-map';
+    config.devServer = {
+        contentBase: buildPath,
+        watchContentBase: true
+    }
+}
+
+module.exports = config;
