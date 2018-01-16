@@ -27,7 +27,7 @@ router
     })
     .on('app/:name', {
         as: 'app',
-        uses: function (params) {
+        uses: params => {
             if ('name' in params && params.name !== 'home' && params.name in appsTemplates) {
                 startApp(appsTemplates[params.name]);
             } else {
@@ -35,7 +35,17 @@ router
             }
         }
     }, {
-        after: showHomeButtons
+        after: showHomeButtons,
+        leave: params => {
+            if ('name' in params && params.name in appsTemplates) {
+                const app = appsTemplates[params.name];
+                if ('exit' in app) {
+                    app.exit();
+                }
+            } else {
+                console.error("name not in param or unknown app: " + params.name);
+            }
+        }
     })
     .notFound(router.gotoHome);
 

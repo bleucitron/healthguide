@@ -48,6 +48,10 @@ const app = {
     setup: function () {
         currentStep = 0;
         document.getElementById("app-guide-posture").addEventListener('click', nextStep);
+        document.addEventListener('keypress', nextStep);
+    },
+    exit: function () {
+        document.removeEventListener('keypress', nextStep);
     }
 };
 
