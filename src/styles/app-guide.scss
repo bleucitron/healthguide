@@ -1,5 +1,5 @@
 
-#app-guide-workspace {
+.app-main:not(#app-exercise-stress) {
   background-color: $background-color;
   flex: 1 1 0;
   @include flex-row;
@@ -16,18 +16,29 @@
     }
   }
 
-  .app-instructions {
+  .app-texts {
     flex: 2;
     @include flex-col;
     justify-content: space-around;
 
-    margin-right: 5%;
+    ul {
+      flex: 1;
+      @include flex-col;
+      justify-content: space-around;
 
-    font-size: x-large;
-    font-size: 1.8vw;
+      margin-right: 5%;
 
-    li {
-      transition: opacity 0.2s ease-in-out;
+      font-size: x-large;
+      font-size: 1.8vw;
+
+      li {
+        transition: opacity 0.2s ease-in-out;
+      }
+
+      &:before {
+        content:attr(aria-label);
+        margin-left:-22px;
+      }
     }
   }
 }

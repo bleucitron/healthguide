@@ -126,6 +126,10 @@ footer {
   visibility: hidden;
 }
 
+.undisplayed {
+  display: none !important;
+}
+
 .transparent {
   opacity: 0;
 }
@@ -163,5 +167,5 @@ button {
 }
 
 @import "home";
+@import "app-guide";
 @import "app-exercise-stress";
-@import "app-guide-workspace";

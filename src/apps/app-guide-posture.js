@@ -1,6 +1,6 @@
 import {showStep} from '../libs/dom-tools';
 
-const stepCount = 6;
+const stepCount = 9;
 let currentStep;
 
 function nextStep(){
@@ -9,11 +9,11 @@ function nextStep(){
 }
 
 const app = {
-    title: "Adapter son espace de travail",
-    content: require('../views/app-guide-workspace.html'),
+    title: "Bonne posture",
+    content: require('../views/app-guide-posture.html'),
     setup: function () {
         currentStep = 0;
-        document.getElementById("app-guide-workspace").addEventListener('click', nextStep);
+        document.getElementById("app-guide-posture").addEventListener('click', nextStep);
     }
 };
 
