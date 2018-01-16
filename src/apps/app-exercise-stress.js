@@ -22,8 +22,8 @@ function nextStep() {
 
         const video = document.querySelector("video.app-video");
         video.addEventListener('ended', router.gotoHome);
-        video.play()
-            .then(() => video.classList.remove("transparent"));
+        video.play();
+        setTimeout(() => video.classList.remove("transparent"), 500);
     }
 }
 

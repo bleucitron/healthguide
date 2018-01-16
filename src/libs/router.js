@@ -37,7 +37,6 @@ router
     }, {
         after: showHomeButtons,
         leave: params => {
-            console.log(params);
             if ('name' in params && params.name in appsTemplates) {
                 const app = appsTemplates[params.name];
                 if ('exit' in app) {
