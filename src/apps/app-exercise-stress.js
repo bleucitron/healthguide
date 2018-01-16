@@ -2,7 +2,7 @@ import router from '../libs/router';
 import {showStepUntil, showStepOnly, setDisplayed} from '../libs/dom-tools';
 
 const stepCount = 5;
-const stepTimeout = 1 * 1000; // in ms
+const stepTimeout = 1.5 * 1000; // in ms
 
 let timeoutHandler;
 let currentStep;
@@ -22,8 +22,8 @@ function nextStep() {
 
         const video = document.querySelector("video.app-video");
         video.addEventListener('ended', router.gotoHome);
-        video.play();
-        setTimeout(() => video.classList.remove("transparent"), 500);
+        video.play()
+            .then(() => video.classList.remove("transparent"));
     }
 }
 
