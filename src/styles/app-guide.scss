@@ -2,6 +2,7 @@
 .app-main:not(#app-exercise-stress) {
   background-color: $background-color;
   flex: 1 1 0;
+
   @include flex-row;
 
   .app-illustrations {
@@ -38,6 +39,12 @@
       &:before {
         content:attr(aria-label);
         margin-left:-22px;
+      }
+
+      &.app-advices:before {
+        text-align: center;
+        font-size: xx-large;
+        font-size: 2.2vw;
       }
     }
   }

@@ -49,6 +49,12 @@ body, html {
   transform: translate(-50%, -50%);
 }
 
+@mixin prevent-selection {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
 html, .viewport {
   @include flex-col;
   width: 100%;
@@ -60,6 +66,7 @@ html, .viewport {
   color: $text-color-bright;
   flex: 1 1 0;
   @include flex-col;
+  @include prevent-selection;
 }
 
 header, footer {
@@ -152,7 +159,7 @@ button {
   color: $text-color-bright;
 
   text-decoration: none;
-  user-select: none;
+  @include prevent-selection;
 
   &:hover, &:focus {
     cursor: pointer;

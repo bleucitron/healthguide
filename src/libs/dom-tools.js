@@ -17,68 +17,67 @@ function setPage(title, content) {
     document.getElementById("main-container").innerHTML = content;
 }
 
+function setDisplayed(query, displayed) {
+    document.querySelectorAll(query)
+        .forEach(elm => {
+            if (displayed) {
+                elm.classList.remove('undisplayed');
+            } else {
+                elm.classList.add('undisplayed');
+            }
+        });
+}
+
+function hideElement(elm) {
+    elm.classList.add('transparent');
+    elm.classList.remove('faded');
+}
+
+function showElement(elm) {
+    elm.classList.remove('transparent');
+    elm.classList.remove('faded');
+}
+
+function fadeElement(elm) {
+    elm.classList.remove('transparent');
+    elm.classList.add('faded');
+}
+
 function showStepOnly(step, container) {
     container = container || "";
-    document.querySelectorAll(container + ' .step').forEach(elm => elm.classList.add("transparent"));
-    document.querySelectorAll(container + ` .step-${step}`).forEach(elm => elm.classList.remove("transparent", "faded"));
+    document.querySelectorAll(container + ' .step').forEach(hideElement);
+    document.querySelectorAll(container + ` .step-${step}`).forEach(showElement);
 }
 
 function showAllSteps(container) {
     container = container || "";
-    document.querySelectorAll(container + ' .step').forEach(elm => elm.classList.remove("faded", "transparent"));
+    document.querySelectorAll(container + ' .step').forEach(showElement);
+}
+
+function hideAllSteps(container) {
+    container = container || "";
+    document.querySelectorAll(container + ' .step').forEach(hideElement);
 }
 
 function showStepUntil(step, stepCount, container, fadeBefore) {
     container = container || "";
     let i = 0;
+    const applyBefore = fadeBefore ? fadeElement : showElement;
     // previous steps
     while (i < step) {
-        // list items are partially faded
-        document.querySelectorAll(container + ` .step-${i}`).forEach(elm => {
-            elm.classList.remove("transparent");
-            if (fadeBefore) {
-                elm.classList.add("faded");
-            } else {
-                elm.classList.remove("faded");
-            }
-        });
+        document.querySelectorAll(container + ` .step-${i}`).forEach(applyBefore);
         i += 1;
     }
+
     // current step
-    document.querySelectorAll(container + ` .step-${step}`).forEach(elm => elm.classList.remove("faded", "transparent"));
+    document.querySelectorAll(container + ` .step-${step}`).forEach(showElement);
     i += 1;
+
+    // next steps
     while (i < stepCount) {
-        // list items are transparent
-        document.querySelectorAll(`.app-instructions .step-${i}`).forEach(elm => {
-            elm.classList.remove("faded");
-            elm.classList.add("transparent");
-        });
+        document.querySelectorAll(`.app-instructions .step-${i}`).forEach(hideElement);
         i += 1;
     }
 }
 
-// function showInstructionStep(step, stepCount) {
-//     let i = 0;
-//     // previous steps
-//     while (i < step) {
-//         // list items are partially faded
-//         document.querySelectorAll(`.app-instructions .step-${i}`).forEach(li => {
-//             li.classList.add("faded");
-//             li.classList.remove("transparent");
-//         });
-//         i += 1;
-//     }
-//     // current step
-//     document.querySelectorAll(`.app-instructions .step-${step}`).forEach(li => li.classList.remove("faded", "transparent"));
-//     i += 1;
-//     while (i < stepCount) {
-//         // list items are transparent
-//         document.querySelectorAll(`.app-instructions .step-${i}`).forEach(li => {
-//             li.classList.remove("faded");
-//             li.classList.add("transparent");
-//         });
-//         i += 1;
-//     }
-// }
-
-export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil};
+export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil, setDisplayed, hideAllSteps};

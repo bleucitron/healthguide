@@ -1,4 +1,4 @@
-import {showStepUntil, showStepOnly, showAllSteps} from '../libs/dom-tools';
+import {showStepUntil, showStepOnly, hideAllSteps} from '../libs/dom-tools';
 
 const stepCount = 6;
 let currentStep;
@@ -6,7 +6,7 @@ let currentStep;
 function nextStep(){
     currentStep = (currentStep + 1) % stepCount;
     if (currentStep === 0) {
-        showAllSteps('.app-instructions');
+        hideAllSteps('.app-instructions');
     } else {
         showStepUntil(currentStep, stepCount, '.app-instructions', true);
     }
