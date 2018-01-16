@@ -1,9 +1,14 @@
 
-.app-main:not(#app-exercise-stress) {
+.app-main {
   background-color: $background-color;
   flex: 1 1 0;
 
   @include flex-row;
+
+  .app-warm-up {
+    flex: 1;
+    @include flex-row;
+  }
 
   .app-illustrations {
     flex: 1;
