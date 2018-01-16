@@ -17,40 +17,68 @@ function setPage(title, content) {
     document.getElementById("main-container").innerHTML = content;
 }
 
-function showIllustrationStep(step) {
-    document.querySelectorAll('.app-illustrations img').forEach(li => li.classList.add("transparent"));
-    document.querySelectorAll(`.app-illustrations img.step-${step}`).forEach(li => li.classList.remove("transparent"));
+function showStepOnly(step, container) {
+    container = container || "";
+    document.querySelectorAll(container + ' .step').forEach(elm => elm.classList.add("transparent"));
+    document.querySelectorAll(container + ` .step-${step}`).forEach(elm => elm.classList.remove("transparent", "faded"));
 }
 
-function showStep(step, stepCount) {
-    showIllustrationStep(step);
+function showAllSteps(container) {
+    container = container || "";
+    document.querySelectorAll(container + ' .step').forEach(elm => elm.classList.remove("faded", "transparent"));
+}
 
-    if (step === 0) {
-        document.querySelectorAll('.app-instructions li').forEach(li => li.classList.remove("faded", "transparent"));
-        return;
-    }
-
+function showStepUntil(step, stepCount, container, fadeBefore) {
+    container = container || "";
     let i = 0;
     // previous steps
     while (i < step) {
         // list items are partially faded
-        document.querySelectorAll(`li.step-${i}`).forEach(li => {
-            li.classList.add("faded");
-            li.classList.remove("transparent");
+        document.querySelectorAll(container + ` .step-${i}`).forEach(elm => {
+            elm.classList.remove("transparent");
+            if (fadeBefore) {
+                elm.classList.add("faded");
+            } else {
+                elm.classList.remove("faded");
+            }
         });
         i += 1;
     }
     // current step
-    document.querySelectorAll(`li.step-${step}`).forEach(li => li.classList.remove("faded", "transparent"));
+    document.querySelectorAll(container + ` .step-${step}`).forEach(elm => elm.classList.remove("faded", "transparent"));
     i += 1;
     while (i < stepCount) {
         // list items are transparent
-        document.querySelectorAll(`li.step-${i}`).forEach(li => {
-            li.classList.remove("faded");
-            li.classList.add("transparent");
+        document.querySelectorAll(`.app-instructions .step-${i}`).forEach(elm => {
+            elm.classList.remove("faded");
+            elm.classList.add("transparent");
         });
         i += 1;
     }
 }
 
-export {showHomeButtons, hideHomeButtons, setPage, showStep};
+// function showInstructionStep(step, stepCount) {
+//     let i = 0;
+//     // previous steps
+//     while (i < step) {
+//         // list items are partially faded
+//         document.querySelectorAll(`.app-instructions .step-${i}`).forEach(li => {
+//             li.classList.add("faded");
+//             li.classList.remove("transparent");
+//         });
+//         i += 1;
+//     }
+//     // current step
+//     document.querySelectorAll(`.app-instructions .step-${step}`).forEach(li => li.classList.remove("faded", "transparent"));
+//     i += 1;
+//     while (i < stepCount) {
+//         // list items are transparent
+//         document.querySelectorAll(`.app-instructions .step-${i}`).forEach(li => {
+//             li.classList.remove("faded");
+//             li.classList.add("transparent");
+//         });
+//         i += 1;
+//     }
+// }
+
+export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil};
