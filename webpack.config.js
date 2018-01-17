@@ -25,9 +25,9 @@ const config = {
         cssExtractor,
         indexHtmlExtractor,
         new CleanWebpackPlugin(buildPath),
-        new WriteFilePlugin({
-            test: /\.js$/
-        })
+        // new WriteFilePlugin({
+        //     test: /\.js$/
+        // })
     ],
     module: {
         rules: [

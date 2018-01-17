@@ -5,6 +5,10 @@
 
   @include flex-row;
 
+  .step {
+    transition: opacity 0.2s ease-in-out;
+  }
+
   .app-warm-up {
     flex: 1;
     @include flex-row;
@@ -12,13 +16,13 @@
 
   .app-illustrations {
     flex: 1;
-    margin: 20px 5% 20px 10%;
+    margin: 0;
 
     position: relative;
     img {
       max-height: 100%;
+      max-width: 100%;
       @include fix-centered;
-      transition: opacity 0.2s ease-in-out;
     }
   }
 
@@ -36,10 +40,6 @@
 
       font-size: x-large;
       font-size: 1.8vw;
-
-      li {
-        transition: opacity 0.2s ease-in-out;
-      }
 
       &:before {
         content:attr(aria-label);
