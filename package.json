@@ -6,6 +6,9 @@
   "scripts": {
     "build": "webpack",
     "build:prod": "cross-env NODE_ENV=production webpack -p",
+    "encrypt": "staticrypt dist/index.html macif -f src/views/password_template.html -t \"Page Protégée\" -i \"Cette page est protégée\" -o dist/index.html",
+    "gh-pages": "gh-pages -d dist -o publish",
+    "deploy": "run-s build:prod encrypt gh-pages",
     "watch": "webpack --watch",
     "develop": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +26,7 @@
     "extract-loader": "^1.0.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "gh-pages": "^1.1.0",
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.6.0",
     "html-loader": "^0.5.4",
@@ -32,10 +36,10 @@
     "npm-run-all": "^4.1.2",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.3",
+    "staticrypt": "^1.1.0",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "2.7.1",
     "write-file-webpack-plugin": "^4.2.0"
-  },
-  "dependencies": {}
+  }
 }
