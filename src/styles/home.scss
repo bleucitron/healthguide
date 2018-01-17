@@ -83,10 +83,16 @@ $section-color-3: rgba($background-color, 0.333);
 
     .app-icon {
       flex: 1 1 0;
-      margin-top: 5px;
+      margin: auto;
       position: relative;
       min-height: 96px;
 
+      transition: opacity 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
       img {
         width: auto;
         max-height: 100%;
@@ -101,11 +107,6 @@ $section-color-3: rgba($background-color, 0.333);
         bottom: -20px;
         @include fix-centered-h;
       }
-    }
-
-    &:hover {
-      outline: 1px solid white;
-      cursor: pointer;
     }
   }
 }
