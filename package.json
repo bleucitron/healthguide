@@ -6,9 +6,6 @@
   "scripts": {
     "build": "webpack",
     "build:prod": "cross-env NODE_ENV=production webpack -p",
-    "deploy:gh-pages": "run-s build:prod gh-pages",
-    "gh-pages": "gh-pages -d dist",
-    "gh-pages:clean": "gh-pages-clean",
     "watch": "webpack --watch",
     "develop": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,7 +23,6 @@
     "extract-loader": "^1.0.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
-    "gh-pages": "^1.1.0",
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.6.0",
     "html-loader": "^0.5.4",
