@@ -5,11 +5,11 @@
 
   @include flex-row;
 
-  .step {
+  .step, .step-icon {
     transition: opacity 0.2s ease-in-out;
   }
 
-  .app-warm-up {
+  .app-phase {
     flex: 1;
     @include flex-row;
   }
@@ -31,16 +31,29 @@
     @include flex-col;
     justify-content: space-around;
 
-    ul {
+    margin-right: 5%;
+    margin-left: 5vw;
+    font-size: x-large;
+    font-size: 1.8vw;
+
+    .step {
+      position: relative;
+    }
+
+    .step .step-icon {
+      left: -6vw;
+      @include fix-centered-v;
+      width: 5vw;
+      height: auto;
+    }
+
+    .app-instructions, .app-advices {
       flex: 1;
       @include flex-col;
       justify-content: space-around;
+    }
 
-      margin-right: 5%;
-
-      font-size: x-large;
-      font-size: 1.8vw;
-
+    ul {
       &:before {
         content:attr(aria-label);
         margin-left:-22px;
