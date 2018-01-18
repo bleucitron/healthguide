@@ -31,8 +31,7 @@
     @include flex-col;
     justify-content: space-around;
 
-    margin-right: 5%;
-    margin-left: 5vw;
+    margin: 1em 1em 1em 3em;
     font-size: x-large;
     font-size: 1.8vw;
 
@@ -51,6 +50,10 @@
       flex: 1;
       @include flex-col;
       justify-content: space-around;
+
+      p {
+        margin: 0;
+      }
     }
 
     ul {

@@ -1,28 +1,33 @@
-import {showStepUntil, showStepOnly, setDisplayed} from '../libs/dom-tools';
+import {showStepUntil, showStepOnly, setDisplayed, showAllSteps, showElement} from '../libs/dom-tools';
 import {warmUp, cancelWait, wait} from "../libs/app-helpers";
 import co from 'co';
 
-const breathStepCount = 3;
+const breathStepCount = 4;
 const breathStepTimeout = 2 * 1000; // in ms
 
 function* exercise(){
-    yield* warmUp();
+    // yield* warmUp();
 
-    setDisplayed('.app-warm-up', false);
+    // setDisplayed('.app-warm-up', false);
+    // setDisplayed('#breath-guide', true);
+    // yield wait(breathStepTimeout);
+    //
+    // for (let step = 1; step < breathStepCount; step++) {
+    //     showStepUntil(step, breathStepCount, '#breath-guide .app-instructions', true);
+    //     showStepOnly(step, '#breath-guide .app-illustrations');
+    //     yield wait(breathStepTimeout);
+    // }
+    //
+    // while (true) {
+    //
+    //
+    //     yield wait(breathStepTimeout);
+    // }
     setDisplayed('#breath-guide', true);
-    yield wait(breathStepTimeout);
+    showAllSteps('#breath-guide .app-instructions');
 
-    for (let step = 1; step < breathStepCount; step++) {
-        showStepUntil(step, breathStepCount, '#breath-guide .app-instructions', true);
-        showStepOnly(step, '#breath-guide .app-illustrations');
-        yield wait(breathStepTimeout);
-    }
+    showElement(document.querySelector('#breath-guide .app-advices'));
 
-    while (true) {
-
-
-        yield wait(breathStepTimeout);
-    }
 }
 
 const app = {

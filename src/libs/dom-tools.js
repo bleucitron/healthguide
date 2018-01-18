@@ -80,4 +80,4 @@ function showStepUntil(step, stepCount, container, fadeBefore) {
     }
 }
 
-export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil, setDisplayed, hideAllSteps};
+export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil, setDisplayed, hideAllSteps, showElement, hideElement, fadeElement};
