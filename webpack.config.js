@@ -2,8 +2,9 @@ const path = require('path');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
-
+const DefinePlugin = require('webpack').DefinePlugin;
 
 const cssExtractor = new ExtractTextPlugin("style.css");
 const indexHtmlExtractor = new ExtractTextPlugin("index.html");
@@ -88,9 +89,11 @@ const config = {
                     options: {
                         presets: [
                             ['env', {
-                                "targets": {
-                                    "browsers": ["Firefox <= 38.4.0"]
-                                }
+                                targets: {
+                                    browsers: ["Firefox >= 38.4.0"]
+                                },
+                                //"exclude": ["transform-regenerator"],
+                                useBuiltIns: 'entry',
                             }]
                         ]
                     }
@@ -105,8 +108,21 @@ const config = {
     }
 };
 
-if (process.env.NODE_ENV !== 'production') {
-    config.devtool = 'inline-source-map';
+if (process.env.NODE_ENV === 'production') {
+    config.plugins.push(
+        new DefinePlugin({
+            'process.env':{
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                ecma: 6
+            }
+        })
+    );
+} else {
+    config.devtool = 'source-map';
     config.devServer = {
         contentBase: buildPath,
         watchContentBase: true

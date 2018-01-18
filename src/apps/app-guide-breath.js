@@ -1,62 +1,38 @@
 import {showStepUntil, showStepOnly, setDisplayed} from '../libs/dom-tools';
-
-const warmUpStepCount = 5;
-const warmUpStepTimeout = 1.5 * 1000; // in ms
+import {warmUp, cancelWait, wait} from "../libs/app-helpers";
+import co from 'co';
 
 const breathStepCount = 3;
 const breathStepTimeout = 2 * 1000; // in ms
 
-let timeoutHandler;
-let currentStep;
+function* exercise(){
+    yield* warmUp();
 
-function warmUpStep() {
-    currentStep = currentStep + 1;
+    setDisplayed('.app-warm-up', false);
+    setDisplayed('#breath-guide', true);
+    yield wait(breathStepTimeout);
 
-    if (currentStep < warmUpStepCount) {
-        // warmup phase
-        showStepUntil(currentStep, warmUpStepCount, '.app-warm-up .app-instructions', true);
-        showStepOnly(currentStep, '.app-warm-up .app-illustrations');
-
-        timeoutHandler = setTimeout(warmUpStep, warmUpStepTimeout);
-    } else {
-        clearTimeout(timeoutHandler);
-
-        setDisplayed('.app-warm-up', false);
-        setDisplayed('#breath-guide', true);
-
-        breathGuideStep();
-    }
-}
-
-function breathGuideStep(){
-    const step = currentStep - warmUpStepCount;
-    if (step < breathStepCount) {
-
+    for (let step = 1; step < breathStepCount; step++) {
         showStepUntil(step, breathStepCount, '#breath-guide .app-instructions', true);
         showStepOnly(step, '#breath-guide .app-illustrations');
-
-        currentStep = currentStep + 1;
-        timeoutHandler = setTimeout(breathGuideStep, breathStepTimeout);
-    } else {
-        breathGuideLoop();
+        yield wait(breathStepTimeout);
     }
-}
 
-function breathGuideLoop() {
+    while (true) {
 
+
+        yield wait(breathStepTimeout);
+    }
 }
 
 const app = {
     title: "Apprentissage de la bonne respiration",
     content: require('../views/app-guide-breath.html'),
     setup: function () {
-        currentStep = warmUpStepCount - 1;
-        timeoutHandler = setTimeout(warmUpStep, warmUpStepTimeout)
+        co(exercise());
     },
     exit: function () {
-        if (timeoutHandler) {
-            clearTimeout(timeoutHandler);
-        }
+        cancelWait();
     }
 };
 

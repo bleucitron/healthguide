@@ -1,43 +1,29 @@
 import router from '../libs/router';
-import {showStepUntil, showStepOnly, setDisplayed} from '../libs/dom-tools';
+import {setDisplayed} from '../libs/dom-tools';
+import {warmUp, cancelWait} from "../libs/app-helpers";
+import co from 'co';
 
-const stepCount = 5;
-const stepTimeout = 1.5 * 1000; // in ms
+function* exercise() {
+    yield* warmUp();
 
-let timeoutHandler;
-let currentStep;
+    setDisplayed('.app-warm-up', false);
+    setDisplayed('.app-video', true);
 
-function nextStep() {
-    currentStep = currentStep + 1;
+    const video = document.querySelector("video.app-video");
+    video.addEventListener('ended', router.gotoHome);
 
-    if (currentStep < stepCount) {
-        showStepUntil(currentStep, stepCount, '.app-instructions', true);
-        showStepOnly(currentStep, '.app-illustrations');
-
-        timeoutHandler = setTimeout(nextStep, stepTimeout);
-    } else {
-        clearTimeout(timeoutHandler);
-        setDisplayed('.app-warm-up', false);
-        setDisplayed('.app-video', true);
-
-        const video = document.querySelector("video.app-video");
-        video.addEventListener('ended', router.gotoHome);
-        video.play();
-        setTimeout(() => video.classList.remove("transparent"), 500);
-    }
+    video.play();
+    setTimeout(() => video.classList.remove("transparent"), 100);
 }
 
 const app = {
     title: "Réduction du stress",
     content: require('../views/app-exercise-stress.html'),
     setup: function () {
-        currentStep = 0;
-        timeoutHandler = setTimeout(nextStep, stepTimeout)
+        co(exercise());
     },
     exit: function () {
-        if (timeoutHandler) {
-            clearTimeout(timeoutHandler);
-        }
+        cancelWait();
     }
 };
 
