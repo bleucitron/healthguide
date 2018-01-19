@@ -1,30 +1,31 @@
 <div class="app-main" id="app-exercise-breath">
-    <!--${require('./partial/warm-up.html')}-->
-    <div id="breath-guide" class="app-phase undisplayed">
+    ${require('./partial/warm-up.html')}
+    <div class="app-page app-page-1 undisplayed">
         <div class="app-illustrations">
-            <div class="step step-0"><img src="../images/breath/breath_step-0.png" alt="Illustration"></div>
-            <div class="transparent step step-1"><img src="../images/breath/breath_step-1.png" alt="Illustration"></div>
-            <div class="transparent step step-2"><img src="../images/breath/breath_step-2.png" alt="Illustration"></div>
-            <div class="transparent step step-3"><img src="../images/breath/breath_step-3.png" alt="Illustration"></div>
-            <div class="transparent step step-3"><img src="../images/breath/breath_step-4.png" alt="Illustration"></div>
+            <div class="step step-0 step-image"><img src="../images/breath/breath_step-0.png" alt="Illustration"></div>
+            <div class="transparent step step-1 step-inspiration step-image"><img src="../images/breath/breath_step-1.png" alt="Illustration"></div>
+            <div class="transparent step step-2 step-expiration step-image"><img src="../images/breath/breath_step-2.png" alt="Illustration"></div>
+            <div class="transparent step step-inspiration-advice step-image"><img src="../images/breath/breath_step-3.png" alt="Illustration"></div>
+            <div class="transparent step step-expiration-advice step-image"><img src="../images/breath/breath_step-4.png" alt="Illustration"></div>
         </div>
         <div class="app-texts">
-            <div class="app-instructions" style="flex: 4;">
-                <p class="step step-0">Mettez une main sur le ventre, l’autre sur le thorax.</p>
-                <p class="transparent step step-1"><img class="step-icon transparent step-1" src="../images/icons/Icon_inspiration.png">Inspirez en gonflant le ventre et le thorax, sans lever les épaules.</p>
-                <p class="transparent step step-2"><img class="step-icon transparent step-2" src="../images/icons/Icon_expiration.png">Expirez et sentez votre ventre se dégonfler et votre thorax se rabaisser.</p>
-                <p class="transparent step step-3">Répétez de manière fluide, sans jamais forcer.</p>
+            <div class="app-instructions">
+                <p class="step step-0 step-text">Mettez une main sur le ventre, l’autre sur le thorax.</p>
+                <div class="step step-1 step-inspiration">
+                    <p class="transparent step-text">Inspirez en gonflant le ventre et le thorax, sans lever les épaules.</p>
+                    <img class="transparent step-icon" src="../images/icons/Icon_inspiration.png">
+                </div>
+                <div class="step step-2 step-expiration">
+                    <p class="transparent step-text">Expirez et sentez votre ventre se dégonfler et votre thorax se rabaisser.</p>
+                    <img class="transparent step-icon" src="../images/icons/Icon_expiration.png">
+                </div>
+                <p class="transparent step step-text step-loop">Répétez de manière fluide, sans jamais forcer.</p>
             </div>
-            <div class="app-advices transparent" style="flex: 2;">
-                <p>Conseils & Astuces</p>
-                <p class="step step-1">L’utilisation du ballon doit rester confortable et indolore.</p>
-                <p class="undisplayed step step-2">Ne pas hésiter à changer d’assise lorsqu’une fatigue ou douleur se fait
-                    sentir.
-                </p>
-                <p class="undisplayed step step-3">Il n’y a aucune contre indication temporelle à l’usage du ballon,
-                    écoutez simplement votre corps.
-                </p>
-                <p class="undisplayed step step-4">Arrêter dès le moindre signe de vertige, nausée, ou malaise.</p>
+            <div class="app-advices transparent">
+                <h2>Conseils & Astuces</h2>
+                <p class="step step-text step-inspiration">En inspirant, vous devez sentir que vos 2 mains s’écartent : le ventre vient épouser votre main, votre thorax se relève.</p>
+                <p class="undisplayed step step-text step-expiration">En expirant, le thorax s’affaisse et le ventre rentre.</p>
+                <p class="undisplayed step step-text step-respiration">Arrêter dès le moindre signe de vertige, nausée, hyperventilation ou malaise.</p>
             </div>
         </div>
     </div>

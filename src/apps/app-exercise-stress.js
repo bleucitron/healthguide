@@ -6,7 +6,7 @@ import co from 'co';
 function* exercise() {
     yield* warmUp();
 
-    setDisplayed('.app-warm-up', false);
+    setDisplayed('.app-page-warm-up', false);
     setDisplayed('.app-video', true);
 
     const video = document.querySelector("video.app-video");

@@ -1,7 +1,7 @@
-import {setDisplayed, showStepOnly, showStepUntil} from "./dom-tools";
+import {setDisplayed, showStepImageOnly, showStepTextUntil} from "./dom-tools";
 
 const warmUpStepCount = 5;
-const warmUpStepTimeout = 1.5 * 1000; // in ms
+const warmUpStepTimeout = 2 * 1000; // in ms
 
 let timeoutHandler;
 
@@ -10,11 +10,11 @@ function wait(millis) {
 }
 
 function* warmUp() {
-    setDisplayed('.app-warm-up', true);
+    setDisplayed('.app-page-warm-up', true);
     yield wait(warmUpStepTimeout);
     for (let step = 1; step < warmUpStepCount ; step++) {
-        showStepUntil(step, warmUpStepCount , '.app-warm-up .app-instructions', true);
-        showStepOnly(step, '.app-warm-up .app-illustrations');
+        showStepTextUntil(step, warmUpStepCount , '.app-page-warm-up');
+        showStepImageOnly(step, '.app-page-warm-up');
         yield wait(warmUpStepTimeout);
     }
 }

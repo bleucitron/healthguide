@@ -1,23 +1,23 @@
-function showHomeButtons() {
+export function showHomeButtons() {
     document.querySelectorAll(".home-button")
         .forEach(button => {
             button.classList.remove("hidden");
         });
 }
 
-function hideHomeButtons() {
+export function hideHomeButtons() {
     document.querySelectorAll(".home-button")
         .forEach(button => {
             button.classList.add("hidden");
         });
 }
 
-function setPage(title, content) {
+export function setPage(title, content) {
     document.getElementById("page-title").textContent = title;
     document.getElementById("main-container").innerHTML = content;
 }
 
-function setDisplayed(query, displayed) {
+export function setDisplayed(query, displayed) {
     document.querySelectorAll(query)
         .forEach(elm => {
             if (displayed) {
@@ -28,56 +28,139 @@ function setDisplayed(query, displayed) {
         });
 }
 
-function hideElement(elm) {
+export function hideElement(elm) {
     elm.classList.add('transparent');
     elm.classList.remove('faded');
+    elm.classList.remove('opaque');
 }
 
-function showElement(elm) {
+export function showElement(elm) {
     elm.classList.remove('transparent');
     elm.classList.remove('faded');
+    elm.classList.add('opaque');
 }
 
-function fadeElement(elm) {
+export function fadeElement(elm) {
     elm.classList.remove('transparent');
+    elm.classList.remove('opaque');
     elm.classList.add('faded');
 }
 
-function showStepOnly(step, container) {
-    container = container || "";
-    document.querySelectorAll(container + ' .step').forEach(hideElement);
-    document.querySelectorAll(container + ` .step-${step}`).forEach(showElement);
+export function showAllStepTexts(container) {
+    applyToAllStepPart(container, '.step-text', showElement);
 }
 
-function showAllSteps(container) {
-    container = container || "";
-    document.querySelectorAll(container + ' .step').forEach(showElement);
+export function fadeAllStepTexts(container) {
+    applyToAllStepPart(container, '.step-text', fadeElement);
 }
 
-function hideAllSteps(container) {
-    container = container || "";
-    document.querySelectorAll(container + ' .step').forEach(hideElement);
+export function hideAllStepTexts(container) {
+    applyToAllStepPart(container, '.step-text', hideElement);
 }
 
-function showStepUntil(step, stepCount, container, fadeBefore) {
+export function hideAllStepIcons(container) {
+    applyToAllStepPart(container, '.step-icon', hideElement);
+}
+
+export function hideAllStepImages(container) {
+    applyToAllStepPart(container, '.step-image', hideElement);
+}
+
+export function showStepTextUntil(step, stepCount, container, fadeBefore) {
     container = container || "";
+    if (typeof fadeBefore === 'undefined') fadeBefore = true;
+
     let i = 0;
-    const applyBefore = fadeBefore ? fadeElement : showElement;
+    const applyBefore = fadeBefore ? fadeStepText : showStepText;
     // previous steps
     while (i < step) {
-        document.querySelectorAll(container + ` .step-${i}`).forEach(applyBefore);
+        applyBefore(i, container);
         i += 1;
     }
 
     // current step
-    document.querySelectorAll(container + ` .step-${step}`).forEach(showElement);
+    showStepText(step, container);
     i += 1;
 
     // next steps
     while (i < stepCount) {
-        document.querySelectorAll(`.app-instructions .step-${i}`).forEach(hideElement);
+        hideStepText(i, container);
         i += 1;
     }
 }
 
-export {showHomeButtons, hideHomeButtons, setPage, showStepOnly, showAllSteps, showStepUntil, setDisplayed, hideAllSteps, showElement, hideElement, fadeElement};
+function applyToAllStepPart(container, part, fun) {
+    let root = document;
+    if (container){
+        root = document.querySelector(container);
+    }
+    root.querySelectorAll(`.step${part}`).forEach(fun);
+    root.querySelectorAll(`.step ${part}`).forEach(fun);
+}
+
+function applyToStepPart(step, container, part, fun) {
+    let root = document;
+    if (container){
+        root = document.querySelector(container);
+    }
+    root.querySelectorAll(`.step.step-${step}${part}`).forEach(fun);
+    root.querySelectorAll(`.step.step-${step} ${part}`).forEach(fun);
+}
+
+export function fadeStepText(step, container) {
+    applyToStepPart(step, container, '.step-text', fadeElement);
+}
+
+export function showStepText(step, container) {
+    applyToStepPart(step, container, '.step-text', showElement);
+}
+
+export function hideStepText(step, container) {
+    applyToStepPart(step, container,  '.step-text',hideElement);
+}
+
+export function showStepIcon(step, container) {
+    applyToStepPart(step, container, '.step-icon', showElement)
+}
+
+export function hideStepIcon(step, container) {
+    applyToStepPart(step, container, '.step-icon', hideElement)
+}
+
+export function showStepImage(step, container) {
+    applyToStepPart(step, container, '.step-image', showElement)
+}
+
+export function hideStepImage(step, container) {
+    applyToStepPart(step, container, '.step-image', hideElement)
+}
+
+export function showStepImageOnly(step, container) {
+    hideAllStepImages(container);
+    showStepImage(step, container);
+}
+
+export function showStepIconOnly(step, container) {
+    hideAllStepIcons(container);
+    showStepIcon(step, container);
+}
+//
+// export {
+//     showHomeButtons,
+//     hideHomeButtons,
+//     setPage,
+//     showStepTextUntil,
+//     setDisplayed,
+//     showAllStepTexts,
+//     hideAllStepTexts,
+//     fadeAllStepTexts,
+//     showElement,
+//     hideElement,
+//     fadeElement,
+//     showStepText,
+//     fadeStepText,
+//     hideStepText,
+//     showStepIcon,
+//     hideStepIcon,
+//     hideAllStepIcons
+// };

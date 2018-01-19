@@ -1,33 +1,74 @@
-import {showStepUntil, showStepOnly, setDisplayed, showAllSteps, showElement} from '../libs/dom-tools';
+import {
+    showStepTextUntil,
+    setDisplayed,
+    fadeAllStepTexts,
+    showStepText,
+    showStepIconOnly,
+    showStepImageOnly,
+    showElement
+} from '../libs/dom-tools';
 import {warmUp, cancelWait, wait} from "../libs/app-helpers";
 import co from 'co';
 
-const breathStepCount = 4;
-const breathStepTimeout = 2 * 1000; // in ms
+const breathStepCount = 3;
+const breathStepTimeout = 5 * 1000; // in ms
 
-function* exercise(){
-    // yield* warmUp();
+function* loopOneCycle() {
+    showStepIconOnly('inspiration', '.app-page-1');
+    showStepImageOnly('inspiration', '.app-page-1');
+    yield wait(breathStepTimeout);
 
-    // setDisplayed('.app-warm-up', false);
-    // setDisplayed('#breath-guide', true);
-    // yield wait(breathStepTimeout);
-    //
-    // for (let step = 1; step < breathStepCount; step++) {
-    //     showStepUntil(step, breathStepCount, '#breath-guide .app-instructions', true);
-    //     showStepOnly(step, '#breath-guide .app-illustrations');
-    //     yield wait(breathStepTimeout);
-    // }
-    //
-    // while (true) {
-    //
-    //
-    //     yield wait(breathStepTimeout);
-    // }
-    setDisplayed('#breath-guide', true);
-    showAllSteps('#breath-guide .app-instructions');
+    showStepIconOnly('expiration', '.app-page-1');
+    showStepImageOnly('expiration', '.app-page-1');
+    yield wait(breathStepTimeout);
+}
 
-    showElement(document.querySelector('#breath-guide .app-advices'));
+function* exercise() {
+    yield* warmUp();
 
+    setDisplayed('.app-page-warm-up', false);
+    setDisplayed('.app-page-1', true);
+    yield wait(breathStepTimeout);
+
+    for (let step = 1; step < breathStepCount; step++) {
+        showStepTextUntil(step, breathStepCount, '.app-page-1 .app-instructions');
+        showStepImageOnly(step, '.app-page-1');
+        showStepIconOnly(step, '.app-page-1');
+        yield wait(breathStepTimeout);
+    }
+
+    fadeAllStepTexts('.app-page-1 .app-instructions');
+    showStepText('loop', '.app-page-1 .app-instructions');
+
+    // loop once
+    yield* loopOneCycle();
+
+    // loop advices
+    showElement(document.querySelector(".app-advices"));
+
+    while (true) {
+        // inspiration
+        setDisplayed('.app-advices .step-text', false);
+        setDisplayed('.app-advices .step-inspiration', true);
+
+        showStepIconOnly('inspiration', '.app-page-1');
+        showStepImageOnly('inspiration-advice', '.app-page-1');
+        yield wait(breathStepTimeout);
+
+        // expiration
+        setDisplayed('.app-advices .step-text', false);
+        setDisplayed('.app-advices .step-expiration', true);
+
+        showStepIconOnly('expiration', '.app-page-1');
+        showStepImageOnly('expiration-advice', '.app-page-1');
+        yield wait(breathStepTimeout);
+
+        // respiration
+        setDisplayed('.app-advices .step-text', false);
+        setDisplayed('.app-advices .step-respiration', true);
+        // loop one respiration cycle
+        yield* loopOneCycle();
+    }
 }
 
 const app = {

@@ -4,69 +4,86 @@
   flex: 1 1 0;
 
   @include flex-row;
+}
 
-  .step, .step-icon {
-    transition: opacity 0.2s ease-in-out;
+
+.step-icon, .step-image, .step-text {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.app-illustrations {
+  flex: 1;
+  margin: 0;
+
+  position: relative;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    @include fix-centered;
   }
+}
+.app-page {
+  flex: 1 1 0;
+  @include flex-row;
+}
 
-  .app-phase {
-    flex: 1;
-    @include flex-row;
-  }
+.app-texts {
+  flex: 2;
+  @include flex-col;
+  justify-content: space-around;
 
-  .app-illustrations {
-    flex: 1;
-    margin: 0;
+  margin: 1em 1em 1em 3em;
+  font-size: x-large;
+  font-size: 1.8vw;
 
+  .step {
     position: relative;
-    img {
-      max-height: 100%;
-      max-width: 100%;
-      @include fix-centered;
-    }
-  }
-
-  .app-texts {
-    flex: 2;
-    @include flex-col;
-    justify-content: space-around;
-
-    margin: 1em 1em 1em 3em;
-    font-size: x-large;
-    font-size: 1.8vw;
-
-    .step {
-      position: relative;
-    }
-
-    .step .step-icon {
+    .step-icon {
       left: -6vw;
       @include fix-centered-v;
       width: 5vw;
       height: auto;
     }
+  }
 
-    .app-instructions, .app-advices {
-      flex: 1;
-      @include flex-col;
-      justify-content: space-around;
+  p, h1, h2, h3, h4, h5, ul, div {
+    flex: 1;
+    margin: 0;
+    @include flex-col;
+    justify-content: center;
+  }
 
-      p {
-        margin: 0;
-      }
+  h2 {
+    text-align: center;
+    font-size: xx-large;
+    font-size: 2.2vw;
+  }
+
+  ul {
+    @include flex-col;
+    justify-content: space-around;
+    &:before {
+      content: attr(aria-label);
+      margin-left: -1em;
     }
+  }
 
-    ul {
-      &:before {
-        content:attr(aria-label);
-        margin-left:-22px;
-      }
+  .app-instructions {
+    flex: 1;
+    @include flex-col;
+    justify-content: space-around;
+  }
 
-      &.app-advices:before {
-        text-align: center;
-        font-size: xx-large;
-        font-size: 2.2vw;
-      }
+  .app-advices {
+    flex: 1;
+    h1, h2, h3, h4, h5 {
+      margin-bottom: 1em;
+      @include flex-col;
+      justify-content: flex-end;
+    }
+    p, ul, div {
+      @include flex-col;
+      justify-content: flex-start;
     }
   }
 }
