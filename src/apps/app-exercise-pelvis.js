@@ -14,16 +14,16 @@ const stepCount = 2;
 const stepTimeout = 5 * 1000; // in ms
 
 function* loopOneCycle() {
-    showStepIconOnly('inspiration', '.app-page-2');
-    showStepImageOnly('inspiration', '.app-page-2');
-    fadeAllStepTexts('.app-page-2 .app-instructions');
-    showStepText('inspiration', '.app-page-2');
-    yield wait(stepTimeout);
-
     showStepIconOnly('expiration', '.app-page-2');
     showStepImageOnly('expiration', '.app-page-2');
     fadeAllStepTexts('.app-page-2 .app-instructions');
     showStepText('expiration', '.app-page-2');
+    yield wait(stepTimeout);
+
+    showStepIconOnly('inspiration', '.app-page-2');
+    showStepImageOnly('inspiration', '.app-page-2');
+    fadeAllStepTexts('.app-page-2 .app-instructions');
+    showStepText('inspiration', '.app-page-2');
     yield wait(stepTimeout);
 }
 
@@ -50,12 +50,12 @@ function* exercise() {
         fadeAllStepTexts('.app-page-2 .app-instructions');
         showElement(document.querySelector(".app-advices"));
 
-        // inspiration
+        // expiration
         setDisplayed('.app-advices .step-text', false);
-        setDisplayed('.app-advices .step-inspiration', true);
+        setDisplayed('.app-advices .step-expiration', true);
 
-        showStepIconOnly('inspiration', '.app-page-2');
-        showStepImageOnly('inspiration-advice', '.app-page-2');
+        showStepIconOnly('expiration', '.app-page-2');
+        showStepImageOnly('expiration-advice', '.app-page-2');
         yield wait(stepTimeout);
 
         // respiration
@@ -63,8 +63,8 @@ function* exercise() {
         setDisplayed('.app-advices .step-respiration', true);
 
         // expiration
-        showStepIconOnly('expiration', '.app-page-2');
-        showStepImageOnly('expiration', '.app-page-2');
+        showStepIconOnly('inspiration', '.app-page-2');
+        showStepImageOnly('inspiration', '.app-page-2');
         yield wait(stepTimeout);
 
         hideElement(document.querySelector(".app-advices"));
