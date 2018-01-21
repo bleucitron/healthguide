@@ -12,6 +12,12 @@ export function hideHomeButtons() {
         });
 }
 
+export function updateNotificationHelpers(status){
+    setDisplayed('#notifications-unavailable', status === 'unavailable');
+    setDisplayed('#ask-notifications-permission', status === 'default');
+    setDisplayed('#notifications-denied', status === 'denied');
+}
+
 export function setPage(title, content) {
     document.getElementById("page-title").textContent = title;
     document.getElementById("main-container").innerHTML = content;
@@ -144,23 +150,3 @@ export function showStepIconOnly(step, container) {
     hideAllStepIcons(container);
     showStepIcon(step, container);
 }
-//
-// export {
-//     showHomeButtons,
-//     hideHomeButtons,
-//     setPage,
-//     showStepTextUntil,
-//     setDisplayed,
-//     showAllStepTexts,
-//     hideAllStepTexts,
-//     fadeAllStepTexts,
-//     showElement,
-//     hideElement,
-//     fadeElement,
-//     showStepText,
-//     fadeStepText,
-//     hideStepText,
-//     showStepIcon,
-//     hideStepIcon,
-//     hideAllStepIcons
-// };

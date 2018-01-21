@@ -1,4 +1,6 @@
-import {setDisplayed} from "./dom-tools";
+import {updateNotificationHelpers} from "./dom-tools";
+
+const helperUpdateFrequency = 3 * 1000; // ms
 
 function requestNotificationsPermission(){
     return new Promise(resolve => {
@@ -15,11 +17,6 @@ function requestNotificationsPermission(){
     });
 }
 
-function updateNotificationHelpers(status){
-    setDisplayed('#ask-notifications-permission', status === 'default');
-    setDisplayed('#notifications-denied', status === 'denied');
-}
-
 function askForPermission() {
     requestNotificationsPermission()
         .then(updateNotificationHelpers);
@@ -27,9 +24,7 @@ function askForPermission() {
 
 export function startNotifications(){
     if (!window.Notification) {
-        setDisplayed('#notifications-unavailable', true);
-        setDisplayed('#ask-notifications-permission', false);
-        setDisplayed('#notifications-denied', false);
+        updateNotificationHelpers('unavailable');
         return;
     }
 
@@ -37,5 +32,5 @@ export function startNotifications(){
         .addEventListener('click', askForPermission);
 
     updateNotificationHelpers(Notification.permission);
-    setInterval(() => updateNotificationHelpers(Notification.permission), 3000);
+    setInterval(() => updateNotificationHelpers(Notification.permission), helperUpdateFrequency);
 }
