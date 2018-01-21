@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import 'nodelist-foreach-polyfill';
 import router from './libs/router';
-import {startNotifications} from "./libs/notifications";
+import {initializeNotifications} from "./libs/notifications";
 
 document.addEventListener("DOMContentLoaded", event => {
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", event => {
             button.addEventListener("click", router.gotoHome);
         });
 
-    startNotifications();
+    initializeNotifications();
 
     // start routing
     router.resolve();
