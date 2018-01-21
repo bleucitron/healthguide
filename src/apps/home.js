@@ -2,7 +2,7 @@ import router from '../libs/router';
 import appsTemplates from '../apps';
 
 const app = {
-    title: "Nom de l'application",
+    title: "Mon assise dynamique",
     content: require('../views/home.html'),
     setup: function () {
         document.querySelectorAll(".app").forEach(app => {
