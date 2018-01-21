@@ -77,9 +77,7 @@ header, footer {
 
   align-items: center;
 
-  p, h1, h2, h3, h4, h5 {
-    color: $text-color-dark;
-  }
+  color: $text-color-dark;
 }
 
 header {
@@ -87,11 +85,16 @@ header {
   position: relative;
 
   button {
-    z-index: 10;
     position: absolute;
     left: 0;
-    bottom: 50%;
-    transform: translate(0, 50%);
+    @include fix-centered-v;
+  }
+
+  .notification-group {
+    position: absolute;
+    right: 0;
+    @include fix-centered-v;
+//    font-size: ;
   }
 
   h1 {
@@ -149,6 +152,16 @@ footer {
   opacity: 1;
 }
 
+.js-trigger {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+
+  &:hover, &:active {
+    color: darken(blue, 20%);
+  }
+}
+
 button {
   text-transform: uppercase;
   font-size: xx-large;
@@ -167,13 +180,13 @@ button {
 
   &:hover, &:focus {
     cursor: pointer;
-    background: lighten($button-color, 10%);
+    background: darken($button-color, 10%);
     outline: none;
     border: none;
   }
 
   &:active {
-    background: darken($button-color, 10%);
+    background: lighten($button-color, 10%);
   }
 }
 
