@@ -5,8 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const DefinePlugin = require('webpack').DefinePlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const cssExtractor = new ExtractTextPlugin("style.css");
+const cssExtractor = new ExtractTextPlugin("style.[contenthash].css");
 const indexHtmlExtractor = new ExtractTextPlugin("index.html");
 
 const buildPath = path.resolve(__dirname, 'dist');
@@ -17,16 +18,19 @@ const config = {
         './index.js',
         './styles/style.scss',
         './favicon.ico',
-        './index.html'
+        //'./index.html'
     ],
     output: {
         path: buildPath,
-        filename: "bundle.js"
+        filename: "bundle.[chunkhash].js"
     },
     plugins: [
         cssExtractor,
         indexHtmlExtractor,
         new CleanWebpackPlugin(buildPath),
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        }),
         // new WriteFilePlugin({
         //     test: /\.js$/
         // })
@@ -35,14 +39,21 @@ const config = {
         rules: [
             {
                 test: path.join(__dirname, "src", "index.html"),
-                use: indexHtmlExtractor.extract([
-                    {
-                        loader: "html-loader",
-                        options: {
-                            interpolate: true,
-                            attrs: ["img:src"]
-                        }
-                    }])
+                // use: indexHtmlExtractor.extract([
+                //     {
+                //         loader: "html-loader",
+                //         options: {
+                //             interpolate: true,
+                //             attrs: ["img:src"]
+                //         }
+                //     }])
+                use: [{
+                    loader: "html-loader",
+                    options: {
+                        interpolate: true,
+                        attrs: ["img:src"]
+                    }
+                }]
             },
             {
                 test: /\.html$/,
