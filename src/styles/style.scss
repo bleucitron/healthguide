@@ -136,7 +136,7 @@ footer {
     left: 0;
     @include fix-centered-v;
     font-size: x-small;
-    color: lighten($text-color-dark, 30%);
+    color: lighten($text-color-dark, 20%);
   }
 }
 

@@ -3,14 +3,15 @@ const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
+// const WriteFilePlugin = require('write-file-webpack-plugin');
 const DefinePlugin = require('webpack').DefinePlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const cssExtractor = new ExtractTextPlugin("style.[contenthash].css");
-const indexHtmlExtractor = new ExtractTextPlugin("index.html");
-
 const buildPath = path.resolve(__dirname, 'dist');
+
+const isProd = process.env.NODE_ENV === 'production';
+
+const cssExtractor = new ExtractTextPlugin(isProd ? "style.[contenthash].css" : "style.css");
 
 const config = {
     context: path.resolve(__dirname, "src"),
@@ -18,15 +19,13 @@ const config = {
         './index.js',
         './styles/style.scss',
         './favicon.ico',
-        //'./index.html'
     ],
     output: {
         path: buildPath,
-        filename: "bundle.[chunkhash].js"
+        filename: isProd ? "bundle.[chunkhash].js" : "bundle.js"
     },
     plugins: [
         cssExtractor,
-        indexHtmlExtractor,
         new CleanWebpackPlugin(buildPath),
         new HtmlWebpackPlugin({
             template: './index.html'
@@ -39,14 +38,6 @@ const config = {
         rules: [
             {
                 test: path.join(__dirname, "src", "index.html"),
-                // use: indexHtmlExtractor.extract([
-                //     {
-                //         loader: "html-loader",
-                //         options: {
-                //             interpolate: true,
-                //             attrs: ["img:src"]
-                //         }
-                //     }])
                 use: [{
                     loader: "html-loader",
                     options: {
@@ -120,7 +111,7 @@ const config = {
     }
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
     config.plugins.push(
         new DefinePlugin({
             'process.env':{

@@ -4,7 +4,6 @@ import router from './libs/router';
 import {initializeNotifications} from "./libs/notifications";
 
 document.addEventListener("DOMContentLoaded", event => {
-
     // setup home button
     document.querySelectorAll(".home-button")
         .forEach(button => {
@@ -15,4 +14,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // start routing
     router.resolve();
+
+    // fixes first navigation not properly handled in latest firefox when page is encrypted with staticrypt
+    router.navigate();
 });
