@@ -16,7 +16,8 @@ const config = {
     entry: [
         './index.js',
         './styles/style.scss',
-        './index.html'
+        './index.html',
+        './images/icons/favicon.ico'
     ],
     output: {
         path: buildPath,
@@ -73,7 +74,7 @@ const config = {
                 }]
             },
             {
-                test: /\.(png|svg|jpg|gif|mp4)$/,
+                test: /\.(png|svg|jpg|gif|mp4|ico)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {

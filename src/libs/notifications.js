@@ -1,10 +1,10 @@
 import {updateNotificationHelpers} from "./dom-tools";
 
 const helperUpdateFrequency = 3 * 1000; // ms
-const notificationDelay = 45 * 60 * 1000; // ms
+const notificationDelay = 0.05 * 60 * 1000; // ms
 
 const notificationTitle = 'Mon assise dynamique';
-const notificationIconURL = '../images/icons/Icon_posture.png';
+const notificationIconURL = require('../images/icons/Icon_notification.png');
 
 const notificationsContent = [
     "Pensez à boire régulièrement.",
@@ -32,7 +32,7 @@ function requestNotificationsPermission() {
             return;
         }
         Notification.requestPermission(function (status) {
-            if (Notification.permission !== status) {
+            if (Notification.permission !== status && !'permission' in Notification) {
                 Notification.permission = status;
             }
             resolve(Notification.permission);
@@ -60,8 +60,10 @@ function showNotification() {
         // one notification in two is special
         nextNotificationIsSpecial = !nextNotificationIsSpecial;
 
+        console.log(notificationIconURL);
         new Notification(notificationTitle, {
             body: content,
+            tag: 'healthguideNotification',
             icon: notificationIconURL
         });
     }
@@ -81,7 +83,6 @@ function resumeNotifications() {
 function startNotifications() {
     lastNotificationTime = Date.now();
     nextNotificationDelay = notificationDelay;
-    timeoutHandler = setTimeout(showNotification, nextNotificationDelay);
 }
 
 export function initializeNotifications() {
