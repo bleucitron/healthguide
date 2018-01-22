@@ -60,7 +60,6 @@ function showNotification() {
         // one notification in two is special
         nextNotificationIsSpecial = !nextNotificationIsSpecial;
 
-        console.log(notificationIconURL);
         new Notification(notificationTitle, {
             body: content,
             tag: 'healthguideNotification',

@@ -16,8 +16,8 @@ const config = {
     entry: [
         './index.js',
         './styles/style.scss',
-        './index.html',
-        './images/icons/favicon.ico'
+        './favicon.ico',
+        './index.html'
     ],
     output: {
         path: buildPath,
@@ -98,7 +98,7 @@ const config = {
                             }]
                         ]
                     }
-                }
+                },
             },
             {
                 test: /\.js$/,
