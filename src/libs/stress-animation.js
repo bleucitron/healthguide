@@ -39,7 +39,7 @@ function createWave(options) {
 
 function createBlob(options, previous) {
     const amplitude = options.to - options.from;
-    const blob = Shape.Circle(new Point(), 1);
+    const blob = Path.Circle(new Point(), options.size * view.size.height);
     
     blob.fillColor = options.color;
     blob.data = {
@@ -49,7 +49,9 @@ function createBlob(options, previous) {
             const gradY = waveGrad(time * scale / period + previousX, scale) * amplitude * view.size.height;
             const angle = Math.atan2(gradY, 1);
             const x = previousX - options.spacing * Math.cos(angle) * view.size.width;
-            this.radius = options.size * view.size.height;
+            const rad = this.bounds.width / 2;
+            const radius = options.size * view.size.height;
+            this.scale(radius / rad);
             this.position.x = x;
             this.position.y = options.from * view.size.height + wave(time * scale / period + x, scale) * amplitude * view.size.height;
         }.bind(blob),
