@@ -9,3 +9,42 @@
     transition: opacity 2s ease-in-out;
   }
 }
+
+#app-exercise-stress-2 {
+  flex: 1 1 0;
+  @include flex-col;
+
+  position: relative;
+  #splashscreen {
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    @include flex-col;
+    justify-content: center;
+    background-color: #168ead;
+    transition: opacity 2s ease-in-out;
+
+    h1 {
+      flex: 0;
+      @include flex-col;
+      margin-left: 1em;
+      margin-right: 1em;
+      text-align: center;
+      font-size: 7vw;
+      font-family: "Segoe UI";
+    }
+  }
+
+  .canvas-container {
+    flex: 1 1 0;
+
+    position: relative;
+    canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

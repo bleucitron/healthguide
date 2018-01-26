@@ -16,5 +16,5 @@ document.addEventListener("DOMContentLoaded", event => {
     router.resolve();
 
     // fixes first navigation not properly handled in latest firefox when page is encrypted with staticrypt
-    router.navigate();
+    //router.navigate(window.location.href.split('#').unshift() || "");
 });
