@@ -24,7 +24,7 @@ function* exercise() {
     setDisplayed('#splashscreen h1', false);
     showElement(document.getElementById('splashscreen'));
     yield wait(3 * 1000);
-    
+
     router.gotoHome();
 }
 
