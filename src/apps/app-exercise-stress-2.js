@@ -4,6 +4,10 @@ import {warmUp, cancelWait, wait} from "../libs/app-helpers";
 import {paper} from 'paper/dist/paper-core';
 import co from 'co';
 
+const exerciseDuration = 5 * 60 * 1000; // ms
+const splashScreenDuration = 2 * 1000; // ms
+const endFadeDuration = 3 * 1000; // ms
+
 let timeout;
 
 function* exercise() {
@@ -12,20 +16,45 @@ function* exercise() {
     setDisplayed('.app-page-warm-up', false);
     setDisplayed('#splashscreen', true);
 
-    yield wait(2000);
+    const audio = document.querySelector('.app-audio');
+    audio.volume = 0;
+    audio.play();
+
+    fadeAudio(audio, 1, splashScreenDuration);
+    yield wait(splashScreenDuration);
     setTimeout(() => hideElement(document.getElementById('splashscreen')), 100);
     setDisplayed('.canvas-container', true);
 
     paper.setup('paper-canvas');
     drawAnimation(paper);
 
-    yield wait(5 * 60 * 1000); // 5 minutes
+    yield wait(exerciseDuration); // 5 minutes
 
     setDisplayed('#splashscreen h1', false);
     showElement(document.getElementById('splashscreen'));
-    yield wait(3 * 1000);
+
+    fadeAudio(audio, 0, splashScreenDuration);
+    yield wait(endFadeDuration);
 
     router.gotoHome();
+}
+
+function fadeAudio(audio, value, duration) {
+    const delta = 100; // in ms ~ 10Hz update
+
+    value = Math.max(0, Math.min(1, value));
+    const increment = (value - audio.volume) / (duration / delta);
+    const clamp = (value > audio.volume)
+        ? v => Math.max(0, Math.min(value, v))
+        : v => Math.max(value, Math.min(1, v));
+
+    function update() {
+        if (audio.volume !== value) {
+            audio.volume = clamp(audio.volume + increment);
+            timeout = setTimeout(update, delta);
+        }
+    }
+    timeout = setTimeout(update, delta);
 }
 
 function drawAnimation(paper) {
@@ -222,6 +251,7 @@ function drawAnimation(paper) {
             refCurve.firstSegment.point.y = refCurve.lastSegment.point.y;
             refCurve.firstSegment.handleOut = -refCurve.lastSegment.handleIn;
         }
+
         updateRefCurve();
 
         const res = (options.frequency || 3) * 9;
@@ -229,7 +259,8 @@ function drawAnimation(paper) {
         const path = new Path();
         path.fillColor = options.color || '#000000';
         path.add(new Point(), new Point());
-        function updateFillSegment(){
+
+        function updateFillSegment() {
             let point = path.segments[0].point;
             point.x = view.bounds.right + 50;
             point.y = view.bounds.bottom + 50;
@@ -237,10 +268,12 @@ function drawAnimation(paper) {
             point.x = view.bounds.left - 50;
             point.y = view.bounds.bottom + 50;
         }
+
         updateFillSegment();
         for (let i = -pad; i < res + pad; i++) {
             path.add(new Point());
         }
+
         function updatePath(time) {
             for (let i = -pad; i < res + pad; i++) {
                 const t = repeat(time, scrollPeriod) / scrollPeriod;
@@ -251,6 +284,7 @@ function drawAnimation(paper) {
             }
             path.smooth(smoothOptions);
         }
+
         updatePath(0);
         path.data.update = function (time) {
             updateRefCurve();
@@ -361,6 +395,7 @@ function drawAnimation(paper) {
         };
         return rect;
     }
+
     const sky = createSky();
 
     const clouds = [];
@@ -501,7 +536,7 @@ const app = {
     exit: function () {
         cancelWait();
         paper.clear();
-        if (timeout){
+        if (timeout) {
             clearTimeout(timeout);
         }
     }
