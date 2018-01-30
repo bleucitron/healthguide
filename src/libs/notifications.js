@@ -1,7 +1,7 @@
 import {updateNotificationHelpers} from "./dom-tools";
 
 const helperUpdateFrequency = 3 * 1000; // ms
-const notificationDelay = 1 * 60 * 1000; // ms
+const notificationDelay = 45 * 60 * 1000; // ms
 
 const notificationTitle = 'Mon assise dynamique';
 const notificationIconURL = require('../images/icons/Icon_notification.png');
