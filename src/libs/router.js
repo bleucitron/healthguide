@@ -4,6 +4,7 @@ import appsTemplates from '../apps';
 
 function startApp(app) {
   setPage(app.title, app.content);
+
   if ('setup' in app) {
     app.setup();
   }
@@ -20,23 +21,18 @@ router.gotoHome = function () {
 };
 
 router
-  .on(() => {
-    startApp(appsTemplates.home);
-  }, {
-    after: hideBackButtons
+  .on(() => startApp(appsTemplates.home), { after: hideBackButtons })
+  .on('contact', () => startApp(appsTemplates.home), { after: hideBackButtons })
+  .on('assise', () => startApp(appsTemplates.assise), {
+    after: () => showBackButtons(router.gotoHome)
   })
-  .on('assise', () => {
-    startApp(appsTemplates.assise);
-  }, {
-      after: () => showBackButtons(router.gotoHome)
-    })
   .on('assise/:name', {
     as: 'assise',
     uses: params => {
       if ('name' in params && params.name !== 'assise' && params.name in appsTemplates) {
         startApp(appsTemplates[params.name]);
       } else {
-        router.navigate('/assise');
+        router.navigate('assise');
       }
     }
   }, {

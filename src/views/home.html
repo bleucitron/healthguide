@@ -1,10 +1,68 @@
-<div id="home">
+<div id='home'>
   <section>
+    <div id='carousel' class='carousel'>
+      <div id='carousel-left' class='arrow'>
+        <img src='../images/home/fleche_tete.png' alt='Go to previous advice arrow' />
+      </div>
+      <div id='carousel-content' class='content'>
+        <img src='../images/home/bandeau.png' hidden />
+      </div>
+      <div id='carousel-right' class='arrow'>
+        <img src='../images/home/fleche_tete.png' alt='Go to next advice arrow'/>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <div class='blank'>
+    <div><img src='../images/naturalpad_logo_square.png' alt="Logo NaturalPad"></div>
+    <div><img src='../images/mcf_logo.png' alt="Logo Macif"></div>
+  </div>
+
+  <section id='offers' class='offers'>
+    <ul>
+      <a href='#assise'>
+        <li id='free'>
+          <h3>Gratuit</h3>
+          <p>Le guide de l'assise dynamique</p>
+        </li>
+      </a>
+      <a href='#contact'>
+        <li class='go-to-contact'>
+          <h3>1€/mois par employé</h3>
+          <p>Mon coach bien-être</p>
+          <p>Des jeux pour se sentir bien</p>
+        </li>
+      </a>
+      <a href="#contact">
+        <li class='go-to-contact'>
+          <h3>Sur mesure</h3>
+          <p>Intervention Kiné à la demande </p>
+          <p>Accompagnement à l'ergonomie des postes</p>
+        </li>
+      </a>
+    </ul>
+    <button>Déclarer une douleur</button>
   </section>
 
-  <section>
+  <div class='blank'>
+    <div><img src='../images/naturalpad_logo_square.png' alt="Logo NaturalPad"></div>
+    <div><img src='../images/mcf_logo.png' alt="Logo Macif"></div>
+  </div>
+
+  <section id='contact' class='contact'>
+    <div class='background'></div>
+    <h2>Ça m'intéresse</h2>
+    <form id='form'>
+      <input id='email' type='email' placeholder='E-mail' required />
+      <input id='name' type='text' placeholder='Nom' required />
+      <input id='company' type='text' placeholder='Compagnie' />
+      <input id='position' type='text' placeholder='Poste' />
+      <input id='phone' type='tel' placeholder='Téléphone' />
+      <textarea id='message' placeholder='Message' required></textarea>
+    </form>
+    <button id='submit'>Envoyer</button>
+    <p id='form-invalid' class='form-info error'>Veuillez entrer a minima un nom, un e-mail valide et un message.</p>
+    <p id='form-error' class='form-info error'>Une erreur est survenue de notre côté. Veuillez réessayer ultérieurement.</p>
+    <p id='form-sent' class='form-info sent'>Votre message a bien été envoyé.</p>
   </section>
 </div>

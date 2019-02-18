@@ -7,7 +7,7 @@ const app = {
     setup: function () {
         document.querySelectorAll(".app").forEach(app => {
             app.addEventListener("click", ev => {
-                router.gotoApp(ev.currentTarget.dataset.appId);
+                router.gotoAssise(ev.currentTarget.dataset.appId);
             });
         });
         document.querySelectorAll(".app-title h3").forEach(title => {

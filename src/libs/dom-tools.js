@@ -2,7 +2,7 @@ export function showBackButtons(onClick) {
     document.querySelectorAll(".back-button")
         .forEach(button => {
             button.classList.remove("hidden");
-            button.addEventListener("click", onClick);
+            button.onclick = onClick;
         });
 }
 
@@ -22,15 +22,62 @@ export function updateNotificationHelpers(status){
 export function setPage(title, content) {
     document.getElementById("page-title").textContent = title;
     document.getElementById("main-container").innerHTML = content;
-    setHeaderClass();
+
+    setHomeClasses();
 }
 
-function setHeaderClass() {
+function setHomeClasses() {
+    const viewport = document.body;
     const header = document.getElementsByTagName('header')[0];
-    if (window.location.href.split('#').pop() === '')
-        header.classList.add('blue');
-    else
-        header.className = '';
+
+    const location = window.location.href.split('#')[1];
+
+    if (location === '' || location === 'contact') {
+        viewport.classList.add('home');
+        header.classList.add('home');
+    }
+    else {
+        viewport.classList.remove('home');
+        header.classList.remove('home');
+    }
+}
+
+export function createAdvices(texts) {
+    const ul = document.createElement('ul');
+    ul.id = 'tiles';
+    ul.classList.add('tiles');
+
+    texts
+    .map(createAdvice)
+    .forEach(li => ul.append(li));
+
+    return ul;
+}
+
+function createAdvice(advice) {
+    const { image, text } = advice;
+
+    const img = document.createElement('img');
+    const div = document.createElement('div');
+    const tile = document.createElement('li');
+    const wrapper = document.createElement('div');
+
+    img.setAttribute('src', '../images/home/bandeau.png');
+    img.setAttribute('alt', 'Background');
+
+    div.className = 'advice';
+    if (image)
+        div.style.backgroundImage = `url('../images/home/${image}')`;
+    div.textContent = text;
+
+    wrapper.className = 'advice-wrapper';
+    wrapper.append(img);
+    wrapper.append(div);
+
+    tile.className = 'tile';
+    tile.append(wrapper);
+
+    return tile;
 }
 
 export function setDisplayed(query, displayed) {

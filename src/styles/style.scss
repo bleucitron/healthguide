@@ -20,6 +20,20 @@ body, html {
   font-family: 'Quicksand';
 }
 
+h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+ul {
+  list-style: none;
+}
+
 @mixin flex-col {
   display: flex;
   flex-direction: column;

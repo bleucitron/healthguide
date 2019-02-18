@@ -52,5 +52,7 @@
     "webpack-dev-server": "2.7.1",
     "write-file-webpack-plugin": "^4.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "escape-html": "^1.0.3"
+  }
 }
