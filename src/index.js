@@ -5,7 +5,7 @@ import {initializeNotifications} from "./libs/notifications";
 
 document.addEventListener("DOMContentLoaded", event => {
     // setup home button
-    document.querySelectorAll(".home-button")
+    document.querySelectorAll(".back-button")
         .forEach(button => {
             button.addEventListener("click", router.gotoHome);
         });

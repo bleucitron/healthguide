@@ -1,4 +1,5 @@
-import homeApp from './home';
+import home from './home';
+import assise from './assise';
 //import stressApp from './app-exercise-stress';
 import stressApp2 from './app-exercise-stress-2';
 import workspaceApp from './app-guide-workspace';
@@ -8,7 +9,8 @@ import pelvisApp from './app-exercise-pelvis';
 import abdominalApp from './app-exercise-abdominal';
 
 const appsTemplates = {
-    home: homeApp,
+    home,
+    assise,
     //'app-exercise-stress': stressApp,
     'app-exercise-stress-2': stressApp2,
     'app-guide-workspace': workspaceApp,

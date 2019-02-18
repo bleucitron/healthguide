@@ -72,8 +72,8 @@ html, .viewport {
 header, footer {
   @include flex-row;
   flex: 0 0 auto;
-  margin-left: $header-margin;
-  margin-right: $header-margin;
+  padding-left: $header-margin;
+  padding-right: $header-margin;
 
   align-items: center;
 
@@ -86,13 +86,13 @@ header {
 
   button {
     position: absolute;
-    left: 0;
+    left: $header-margin;
     @include fix-centered-v;
   }
 
   .notification-group {
     position: absolute;
-    right: 0;
+    right: $header-margin;
     @include fix-centered-v;
 //    font-size: ;
   }
@@ -119,7 +119,7 @@ footer {
     position: absolute;
     width: auto;
     height: $logo-size;
-    right: 0;
+    right: $header-margin;
     bottom: 0;
     padding: 16px;
     border-radius: 24px;
@@ -133,7 +133,7 @@ footer {
 
   #version-info {
     position: absolute;
-    left: 0;
+    left: $header-margin;
     @include fix-centered-v;
     font-size: x-small;
     color: lighten($text-color-dark, 20%);
@@ -199,5 +199,6 @@ button {
 }
 
 @import "home";
+@import "assise";
 @import "app-guide";
 @import "app-exercise-stress";

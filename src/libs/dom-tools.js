@@ -1,12 +1,13 @@
-export function showHomeButtons() {
-    document.querySelectorAll(".home-button")
+export function showBackButtons(onClick) {
+    document.querySelectorAll(".back-button")
         .forEach(button => {
             button.classList.remove("hidden");
+            button.addEventListener("click", onClick);
         });
 }
 
-export function hideHomeButtons() {
-    document.querySelectorAll(".home-button")
+export function hideBackButtons() {
+    document.querySelectorAll(".back-button")
         .forEach(button => {
             button.classList.add("hidden");
         });
@@ -21,6 +22,15 @@ export function updateNotificationHelpers(status){
 export function setPage(title, content) {
     document.getElementById("page-title").textContent = title;
     document.getElementById("main-container").innerHTML = content;
+    setHeaderClass();
+}
+
+function setHeaderClass() {
+    const header = document.getElementsByTagName('header')[0];
+    if (window.location.href.split('#').pop() === '')
+        header.classList.add('blue');
+    else
+        header.className = '';
 }
 
 export function setDisplayed(query, displayed) {

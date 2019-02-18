@@ -36,7 +36,7 @@ function* exercise() {
     fadeAudio(audio, 0, splashScreenDuration);
     yield wait(endFadeDuration);
 
-    router.gotoHome();
+    router.gotoAssise();
 }
 
 function fadeAudio(audio, value, duration) {

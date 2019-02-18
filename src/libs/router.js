@@ -1,52 +1,57 @@
 import Navigo from 'navigo';
-import {showHomeButtons, hideHomeButtons, setPage} from './dom-tools';
+import { showBackButtons, hideBackButtons, setPage } from './dom-tools';
 import appsTemplates from '../apps';
 
 function startApp(app) {
-    setPage(app.title, app.content);
-    if ('setup' in app) {
-        app.setup();
-    }
+  setPage(app.title, app.content);
+  if ('setup' in app) {
+    app.setup();
+  }
 }
 
 const router = new Navigo(null, true);
 
-router.gotoApp = function (name) {
-    router.navigate(router.generate('app', {name: name}));
+router.gotoAssise = function (name) {
+  router.navigate(router.generate('assise', { name: name }));
 };
 
 router.gotoHome = function () {
-    router.navigate();
+  router.navigate();
 };
 
 router
-    .on(() => {
-        startApp(appsTemplates.home);
-    }, {
-        after: hideHomeButtons
+  .on(() => {
+    startApp(appsTemplates.home);
+  }, {
+    after: hideBackButtons
+  })
+  .on('assise', () => {
+    startApp(appsTemplates.assise);
+  }, {
+      after: () => showBackButtons(router.gotoHome)
     })
-    .on('app/:name', {
-        as: 'app',
-        uses: params => {
-            if ('name' in params && params.name !== 'home' && params.name in appsTemplates) {
-                startApp(appsTemplates[params.name]);
-            } else {
-                router.gotoHome();
-            }
+  .on('assise/:name', {
+    as: 'assise',
+    uses: params => {
+      if ('name' in params && params.name !== 'assise' && params.name in appsTemplates) {
+        startApp(appsTemplates[params.name]);
+      } else {
+        router.navigate('/assise');
+      }
+    }
+  }, {
+      after: () => showBackButtons(router.gotoAssise),
+      leave: params => {
+        if ('name' in params && params.name in appsTemplates) {
+          const app = appsTemplates[params.name];
+          if ('exit' in app) {
+            app.exit();
+          }
+        } else {
+          console.error("unknown app: " + params.name);
         }
-    }, {
-        after: showHomeButtons,
-        leave: params => {
-            if ('name' in params && params.name in appsTemplates) {
-                const app = appsTemplates[params.name];
-                if ('exit' in app) {
-                    app.exit();
-                }
-            } else {
-                console.error("unknown app: " + params.name);
-            }
-        }
+      }
     })
-    .notFound(router.gotoHome);
+  .notFound(router.gotoHome);
 
 export default router;
