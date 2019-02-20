@@ -7,7 +7,8 @@ import messages from '../data/home.json';
 const delay = 5000; // 5s
 
 const app = {
-  title: "Le bien être au travail",
+  id: 'home',
+  title: 'Le bien être au travail',
   content: require('../views/home.html'),
   setup: () => {
 

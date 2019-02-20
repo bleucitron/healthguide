@@ -7,7 +7,7 @@ import {
     showStepImageOnly,
     showElement, hideElement
 } from '../libs/dom-tools';
-import {warmUp, cancelWait, wait} from "../libs/app-helpers";
+import {warmUp, cancelWait, wait} from '../libs/app-helpers';
 import co from 'co';
 
 const stepCount = 2;
@@ -48,7 +48,7 @@ function* exercise() {
     // loop advices
     while (true) {
         fadeAllStepTexts('.app-page-2 .app-instructions');
-        showElement(document.querySelector(".app-advices"));
+        showElement(document.querySelector('.app-advices'));
 
         // expiration
         setDisplayed('.app-advices .step-text', false);
@@ -67,7 +67,7 @@ function* exercise() {
         showStepImageOnly('inspiration', '.app-page-2');
         yield wait(stepTimeout);
 
-        hideElement(document.querySelector(".app-advices"));
+        hideElement(document.querySelector('.app-advices'));
 
         // loop one respiration cycle
         yield* loopOneCycle();
@@ -75,7 +75,8 @@ function* exercise() {
 }
 
 const app = {
-    title: "Mobilité du bassin",
+    id: 'exercise-pelvis',
+    title: 'Mobilité du bassin',
     content: require('../views/app-exercise-pelvis.html'),
     setup: function () {
         co(exercise());

@@ -3,7 +3,7 @@ import { showBackButtons, hideBackButtons, setPage } from './dom-tools';
 import appsTemplates from '../apps';
 
 function startApp(app) {
-  setPage(app.title, app.content);
+  setPage(app);
 
   if ('setup' in app) {
     app.setup();
@@ -23,6 +23,9 @@ router.gotoHome = function () {
 router
   .on(() => startApp(appsTemplates.home), { after: hideBackButtons })
   .on('contact', () => startApp(appsTemplates.home), { after: hideBackButtons })
+  .on('douleur', () => startApp(appsTemplates.douleur), {
+    after: () => showBackButtons(router.gotoHome)
+  })
   .on('assise', () => startApp(appsTemplates.assise), {
     after: () => showBackButtons(router.gotoHome)
   })

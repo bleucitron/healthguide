@@ -36,11 +36,12 @@ function nextStep() {
 }
 
 const app = {
-    title: "Bonne posture",
+    id: 'guide-posture',
+    title: 'Bonne posture',
     content: require('../views/app-guide-posture.html'),
     setup: function () {
         currentPhase = instructions();
-        document.getElementById("app-guide-posture").addEventListener('click', nextStep);
+        document.getElementById('app-guide-posture').addEventListener('click', nextStep);
         document.addEventListener('keypress', nextStep);
     },
     exit: function () {

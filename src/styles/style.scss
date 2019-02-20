@@ -1,19 +1,12 @@
 @import "fonts";
-
-$background-color: #0B1F52;
+@import "colors";
 
 $header-margin: 48px;
-
-$button-color: #0073be;
-$text-color-dark: #818181;
 
 $header-height: 80px;
 $footer-height: 60px;
 
 $logo-size: 64px;
-
-$text-color-bright: white;
-$text-color-bright-fade: rgba($text-color-bright, 0.66);
 
 body, html {
   background: white;
@@ -214,5 +207,6 @@ button {
 
 @import "home";
 @import "assise";
+@import "douleur";
 @import "app-guide";
 @import "app-exercise-stress";

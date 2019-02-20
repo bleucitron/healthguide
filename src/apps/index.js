@@ -1,4 +1,5 @@
 import home from './home';
+import douleur from './douleur';
 import assise from './assise';
 //import stressApp from './app-exercise-stress';
 import stressApp2 from './app-exercise-stress-2';
@@ -10,6 +11,7 @@ import abdominalApp from './app-exercise-abdominal';
 
 const appsTemplates = {
     home,
+    douleur,
     assise,
     //'app-exercise-stress': stressApp,
     'app-exercise-stress-2': stressApp2,

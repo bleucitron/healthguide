@@ -7,7 +7,7 @@ import {
     showStepImageOnly,
     showElement, hideElement
 } from '../libs/dom-tools';
-import {warmUp, cancelWait, wait} from "../libs/app-helpers";
+import {warmUp, cancelWait, wait} from '../libs/app-helpers';
 import co from 'co';
 
 const stepCount = 3;
@@ -30,10 +30,10 @@ function* exercise() {
 
     // loop advices
     while (true) {
-        for (let step = 1; step <= adviceStepCount; step++) { // "<=" because advices start at 1
+        for (let step = 1; step <= adviceStepCount; step++) { // '<=' because advices start at 1
             // expiration
             fadeAllStepTexts('.app-page-1 .app-instructions');
-            showElement(document.querySelector(".app-advices"));
+            showElement(document.querySelector('.app-advices'));
 
             setDisplayed('.app-advices .step-text', false);
             setDisplayed(`.app-advices .step-expiration-advice-${step}`, true);
@@ -43,7 +43,7 @@ function* exercise() {
             yield wait(stepTimeout);
 
             // inspiration
-            hideElement(document.querySelector(".app-advices"));
+            hideElement(document.querySelector('.app-advices'));
 
             showStepIconOnly('inspiration', '.app-page-1');
             showStepImageOnly('inspiration', '.app-page-1');
@@ -54,7 +54,8 @@ function* exercise() {
 }
 
 const app = {
-    title: "Gainage / renforcement musculaire",
+    id: 'exercise-abdominal',
+    title: 'Gainage / renforcement musculaire',
     content: require('../views/app-exercise-abdominal.html'),
     setup: function () {
         co(exercise());

@@ -19,27 +19,19 @@ export function updateNotificationHelpers(status){
     setDisplayed('#notifications-denied', status === 'denied');
 }
 
-export function setPage(title, content) {
+export function setPage({ id, title, content }) {
     document.getElementById("page-title").textContent = title;
     document.getElementById("main-container").innerHTML = content;
 
-    setHomeClasses();
+    setViewportClass(id);
 }
 
-function setHomeClasses() {
+function setViewportClass(id) {
     const viewport = document.body;
-    const header = document.getElementsByTagName('header')[0];
+    const [original, ...classes] = viewport.classList;
 
-    const location = window.location.href.split('#')[1];
-
-    if (location === '' || location === 'contact') {
-        viewport.classList.add('home');
-        header.classList.add('home');
-    }
-    else {
-        viewport.classList.remove('home');
-        header.classList.remove('home');
-    }
+    viewport.classList.remove(...classes);
+    viewport.classList.add(id);
 }
 
 export function createAdvices(texts) {

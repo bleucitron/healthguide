@@ -7,7 +7,7 @@ import {
     showStepImageOnly,
     showElement
 } from '../libs/dom-tools';
-import {warmUp, cancelWait, wait} from "../libs/app-helpers";
+import {warmUp, cancelWait, wait} from '../libs/app-helpers';
 import co from 'co';
 
 const breathStepCount = 3;
@@ -44,7 +44,7 @@ function* exercise() {
     yield* loopOneCycle();
 
     // loop advices
-    showElement(document.querySelector(".app-advices"));
+    showElement(document.querySelector('.app-advices'));
 
     while (true) {
         // inspiration
@@ -72,7 +72,8 @@ function* exercise() {
 }
 
 const app = {
-    title: "Apprentissage de la bonne respiration",
+    id: 'guide-breath',
+    title: 'Apprentissage de la bonne respiration',
     content: require('../views/app-guide-breath.html'),
     setup: function () {
         co(exercise());

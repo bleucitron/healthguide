@@ -1,6 +1,6 @@
 import router from '../libs/router';
 import {setDisplayed} from '../libs/dom-tools';
-import {warmUp, cancelWait} from "../libs/app-helpers";
+import {warmUp, cancelWait} from '../libs/app-helpers';
 import co from 'co';
 
 function* exercise() {
@@ -9,15 +9,16 @@ function* exercise() {
     setDisplayed('.app-page-warm-up', false);
     setDisplayed('.app-video', true);
 
-    const video = document.querySelector("video.app-video");
+    const video = document.querySelector('video.app-video');
     video.addEventListener('ended', router.gotoAssise);
 
     video.play();
-    setTimeout(() => video.classList.remove("transparent"), 100);
+    setTimeout(() => video.classList.remove('transparent'), 100);
 }
 
 const app = {
-    title: "Réduction du stress",
+    id: 'exercise-stress',
+    title: 'Réduction du stress',
     content: require('../views/app-exercise-stress.html'),
     setup: function () {
         co(exercise());

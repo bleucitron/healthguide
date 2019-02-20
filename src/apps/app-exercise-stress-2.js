@@ -1,6 +1,6 @@
 import router from '../libs/router';
 import {hideElement, setDisplayed, showElement} from '../libs/dom-tools';
-import {warmUp, cancelWait, wait} from "../libs/app-helpers";
+import {warmUp, cancelWait, wait} from '../libs/app-helpers';
 import {paper} from 'paper/dist/paper-core';
 import co from 'co';
 
@@ -343,7 +343,7 @@ function drawAnimation(paper) {
         const size = 0.15;
         const text = new PointText({
             point: new Point(view.bounds.width / 2, (1 - position) * view.bounds.height),
-            content: "INSPIREZ",
+            content: 'INSPIREZ',
             fillColor: 'white',
             fontFamily: 'Segoe UI',
             fontWeight: 'bold',
@@ -357,16 +357,16 @@ function drawAnimation(paper) {
             this.fontSize = Math.round(size * view.bounds.height);
             const t = repeat(time, period) / period;
             if (t <= 0.25) {
-                this.content = "INSPIREZ";
+                this.content = 'INSPIREZ';
                 this.opacity = easeSin(0, 1, t / 0.25);
             } else if (t <= 0.5) {
-                this.content = "INSPIREZ";
+                this.content = 'INSPIREZ';
                 this.opacity = easeSin(1, 0, (t - 0.25) / 0.25);
             } else if (t <= 0.75) {
-                this.content = "EXPIREZ";
+                this.content = 'EXPIREZ';
                 this.opacity = easeSin(0, 1, (t - 0.5) / 0.25);
             } else {
-                this.content = "EXPIREZ";
+                this.content = 'EXPIREZ';
                 this.opacity = easeSin(1, 0, (t - 0.75) / 0.25);
             }
         }.bind(text);
@@ -528,7 +528,8 @@ function drawAnimation(paper) {
 }
 
 const app = {
-    title: "Réduction du stress",
+    id: 'exercise-stress-2',
+    title: 'Réduction du stress',
     content: require('../views/app-exercise-stress-2.html'),
     setup: function () {
         co(exercise());

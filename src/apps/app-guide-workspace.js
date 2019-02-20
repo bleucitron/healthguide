@@ -23,11 +23,12 @@ function nextStep(){
 }
 
 const app = {
-    title: "Adapter son espace de travail",
+    id: 'guide-workspace',
+    title: 'Adapter son espace de travail',
     content: require('../views/app-guide-workspace.html'),
     setup: function () {
         currentPhase = instructions();
-        document.getElementById("app-guide-workspace").addEventListener('click', nextStep);
+        document.getElementById('app-guide-workspace').addEventListener('click', nextStep);
         document.addEventListener('keypress', nextStep);
     },
     exit: function () {
