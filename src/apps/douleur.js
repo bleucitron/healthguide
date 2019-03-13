@@ -21,11 +21,13 @@ const app = {
 
     const paths = [...document.getElementsByTagName('path')];
 
+    console.log('paths', paths);
+
     let isBack = false;
     let isFemale = true;
 
     let currentInfo;
-    let currentSvg;
+    let currentPath;
 
     function updateSilhouette() {
       const side = isBack ? sideType.BACK : sideType.FRONT;
@@ -49,20 +51,20 @@ const app = {
 
     function selectPath(e) {
       // const fullId = `${isFemale ? genderType.FEMALE : genderType.MALE}-${e.currentTarget.id}`;
-      const svg = e.target
-      const id = svg.classList[0];
+      const path = e.target
+      const id = path.classList[0];
       const toShow = document.getElementById(`info-${id}`);
 
       if (toShow) {
         if (currentInfo) currentInfo.classList.add('hidden');
-        if (currentSvg) currentSvg.classList.remove('displayed');
+        if (currentPath) currentPath.classList.remove('selected');
 
-        svg.classList.add('displayed');
+        path.classList.add('selected');
         toShow.classList.remove('hidden');
         infos.classList.remove('hidden');
 
         currentInfo = toShow;
-        currentSvg = svg;
+        currentPath = path;
       }
     }
 
