@@ -1,11 +1,14 @@
 <div id='douleur'>
   <section id='selector' class='selector'>
     <div id='silhouette' class='silhouette'>
-      <img src='../images/douleur/silhouette_homme_dos.png' hidden />
-      <img src='../images/douleur/silhouette_homme_face.png' hidden />
-      <img src='../images/douleur/silhouette_femme_dos.png' hidden />
-      <img id='img' src='../images/douleur/silhouette_femme_face.png' />
-      ${require('./partial/silhouette.html')}
+      <img id='img' src='../images/douleur/silhouette_female_front.png' />
+      <img src='../images/douleur/silhouette_male_back.png' hidden />
+      <img src='../images/douleur/silhouette_male_front.png' hidden />
+      <img src='../images/douleur/silhouette_female_back.png' hidden />
+      ${require('../images/douleur/male_back.svg')}
+      ${require('../images/douleur/male_front.svg')}
+      ${require('../images/douleur/female_back.svg')}
+      ${require('../images/douleur/female_front.svg')}
       <button id='switch-side' class='switch-side'>
         <!-- <img src='../images/douleur/bouton_change.png' alt='Retourner la silhouette'> -->
       </button>
@@ -40,7 +43,7 @@
           </li>
         </ul>
       </li>
-      <li id='info-shoulders' class='info hidden'>
+      <li id='info-neck' class='info hidden'>
         <img src='../images/douleur/info_bulle.png' />
         <h2>Cou et Trapèzes</h2>
         <p>Cela peut être lié à votre posture assise et en particulier à la hauteur de l’écran. Devant votre écran, votre tête doit

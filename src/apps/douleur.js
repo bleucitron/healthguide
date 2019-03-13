@@ -1,11 +1,11 @@
 const genderType = {
-  MALE: 'homme',
-  FEMALE: 'femme'
+  MALE: 'male',
+  FEMALE: 'female'
 };
 
 const sideType = {
-  FRONT: 'face',
-  BACK: 'dos'
+  FRONT: 'front',
+  BACK: 'back'
 };
 
 const app = {
@@ -21,8 +21,6 @@ const app = {
 
     const paths = [...document.getElementsByTagName('path')];
 
-    console.log('paths', paths);
-
     let isBack = false;
     let isFemale = true;
 
@@ -32,13 +30,18 @@ const app = {
     function updateSilhouette() {
       const side = isBack ? sideType.BACK : sideType.FRONT;
       const gender = isFemale ? genderType.FEMALE : genderType.MALE;
+
+      console.log('SILH', `../images/douleur/silhouette_${gender}_${side}.png`);
+
       silhouette.src = `../images/douleur/silhouette_${gender}_${side}.png`;
+
+      [...document.getElementsByTagName('svg')].forEach(svg => {
+        svg.classList.add('hidden');
+      });
+      document.getElementById(`${gender}_${side}`).classList.remove('hidden');
     }
 
     function switchSide() {
-      [...document.getElementsByTagName('svg')].forEach(svg => {
-        svg.classList.toggle('hidden');
-      });
       isBack = !isBack;
       updateSilhouette();
     }
@@ -50,7 +53,6 @@ const app = {
     }
 
     function selectPath(e) {
-      // const fullId = `${isFemale ? genderType.FEMALE : genderType.MALE}-${e.currentTarget.id}`;
       const path = e.target
       const id = path.classList[0];
       const toShow = document.getElementById(`info-${id}`);

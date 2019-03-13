@@ -70,17 +70,17 @@
           left: 3%;
           content: '';
 
-          background-image: url('../images/douleur/bouton_femme.png');
+          background-image: url('../images/douleur/bouton_female.png');
 
           &:hover {
-            background-image: url('../images/douleur/bouton_femme_survole.png');
+            background-image: url('../images/douleur/bouton_female_survole.png');
           }
 
           &.male {
-            background-image: url('../images/douleur/bouton_homme.png');
+            background-image: url('../images/douleur/bouton_male.png');
 
             &:hover {
-              background-image: url('../images/douleur/bouton_homme_survole.png');
+              background-image: url('../images/douleur/bouton_male_survole.png');
             }
           }
         }
@@ -153,17 +153,24 @@
 path {
   cursor: pointer;
   fill: transparent;
+  // stroke: black;
+
+  &.shoulders {
+    cursor: auto;
+
+    &:hover {
+      fill: transparent;
+    }
+  }
 
   &:hover {
-    fill: $blue;
-    opacity: 0.5;
+    fill: $light-grey;
+    opacity: .6;
   }
 
   &.selected {
     fill: $greenish;
     fill-opacity: .7;
-    stroke: $blue;
-    stroke-width: .5px;
     opacity: 1;
   }
 }
