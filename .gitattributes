@@ -1,3 +1,0 @@
-src/videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
-src/videos/*.webm filter=lfs diff=lfs merge=lfs -text
-src/audios/* filter=lfs diff=lfs merge=lfs -text
