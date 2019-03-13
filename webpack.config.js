@@ -76,13 +76,17 @@ const config = {
                 }]
             },
             {
-                test: /\.(png|svg|jpg|gif|mp4|ico|webm|ogg)$/,
+                test: /\.(png|jpg|gif|mp4|ico|webm|ogg)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
                         name: '[path][name].[ext]'
                     }
                 }]
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
             },
             {
                 test: /\.js$/,
