@@ -4,7 +4,7 @@ import { createAdvices } from '../libs/dom-tools.js';
 
 import messages from '../data/home.json';
 
-const delay = 5000; // 5s
+const delay = 10000; // 10s
 
 const app = {
   id: 'home',
@@ -17,50 +17,62 @@ const app = {
     const rightArrow = document.getElementById('carousel-right');
     const leftArrow = document.getElementById('carousel-left');
 
+    let isMoving = false;
+
+    messages.unshift(messages.pop());
     let tilesUl = createAdvices(messages);
 
-    carousel.append(tilesUl);
+    carousel.appendChild(tilesUl);
 
     let interval = window.setInterval(displayNextAdvice, delay);
 
     function displayPreviousAdvice() {
-      tilesUl.style = 'transform: translateX(100vw)';
+      isMoving = !isMoving;
+      tilesUl.style = 'transform: translateX(0vw)';
 
-      const last = messages.pop();
-      messages.unshift(last);
-
+      messages.unshift(messages.pop());
       let newUl = createAdvices(messages);
 
       tilesUl.addEventListener('transitionend', () => {
         tilesUl.replaceWith(newUl);
         tilesUl = newUl;
+
+        isMoving = !isMoving;
+
         if (!interval)
           interval = window.setInterval(displayNextAdvice, delay);
       });
     }
 
     function displayNextAdvice() {
-      tilesUl.style = 'transform: translateX(-100vw)';
+      isMoving = !isMoving;
+      tilesUl.style = 'transform: translateX(-200vw)';
 
-      const first = messages.shift();
-      messages.push(first);
+      messages.push(messages.shift());
 
       let newUl = createAdvices(messages);
 
       tilesUl.addEventListener('transitionend', () => {
         tilesUl.replaceWith(newUl);
         tilesUl = newUl;
+
+        isMoving = !isMoving;
+
         if (!interval)
           interval = window.setInterval(displayNextAdvice, delay);
       });
     }
 
     rightArrow.addEventListener('click', () => {
+      if (isMoving) return;
+
       window.clearInterval(interval);
       interval = null;
       displayNextAdvice();
     });
     leftArrow.addEventListener('click', () => {
+      if (isMoving) return;
+
       window.clearInterval(interval);
       interval = null;
       displayPreviousAdvice();

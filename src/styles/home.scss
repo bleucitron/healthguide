@@ -99,42 +99,85 @@
     align-items: center;
     justify-content: space-evenly;
 
-    .content {
+    > .content {
       width: 70vw;
-      max-width: 50rem;
+
       display: flex;
-      justify-content: center;
 
       .tiles {
         display: flex;
+        transform: translateX(-100vw);
         transition: transform 1s;
       }
 
       .tile {
         width: 70vw;
-        margin: 0 15vw;
+        margin: 0;
+        margin-right: 30vw;
       }
 
       .advice-wrapper {
         position: relative;
-        width: 70vw;
-        max-width: 50rem;
+        max-width: 60rem;
         margin: 0 auto;
+
+        > img {
+          width: 100%;
+          height: 30rem;
+        }
       }
 
       .advice {
+        display: flex;
+        flex-direction: column;
         position: absolute;
-        padding: 5.5rem;
+        padding: 3rem;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         background-size: cover;
-      }
 
-      img {
-        width: 100%;
-        height: 30rem;
+        h2 {
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+
+        .content-wrapper {
+          flex: 1 0;
+          display: flex;
+          box-sizing: border-box;
+          position: relative;
+
+          div {
+            box-sizing: border-box;
+            flex: 0 1 50%;
+
+            &.img {
+              background-size: contain;
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+
+            &.content {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              padding-left: 2rem;
+              flex: 1 0 50%;
+            }
+
+            p {
+              margin: .5rem;
+              text-align: justify;
+              white-space: pre-line;
+            }
+          }
+
+          img {
+            width: 100%;
+          }
+        }
       }
     }
 
@@ -142,6 +185,7 @@
       cursor: pointer;
       flex: 1 0;
       text-align: center;
+      z-index: 10;
 
       img {
         width: 4rem;
@@ -289,3 +333,10 @@
   }
 }
 
+@media (max-width: 900px) {
+  #home .content-wrapper .img {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    opacity: .25;
+  }
+}

@@ -1,17 +1,32 @@
 [
   {
-    "text": "Message1"
+    "id": "what",
+    "title": "Qu'est ce que le bien-être au travail ?",
+    "text": "<p>Le <b>bien-être</b> au travail c'est être <b>épanoui</b>, bien <b>s'entendre</b> avec ses collègues, être en <b>bonne santé</b>, bien dans sa tête, bien dans son corps.</p><p>C'est un sentiment de <b>satisfaction</b> et <b>d'épanouissement</b> dans et par le travail.</p>"
   },
   {
-    "text": "Message2"
+    "id": "time",
+    "title": "Combien passe-t-on de temps au travail ?",
+    "text": "<p>En moyenne, un individu va travailler pendant <b>35 ans</b>. En France, le temps de travail est de <b>35h / semaine</b>, soit 152h de travail par mois, et 1607h par an. Au final, dans une vie on passe en moyenne <b>56 245h</b> au travail.</p><p>Cumulé avec nos modes de vie de plus en plus sédentaire, finalement on est plus de <b>la moitié</b> de notre temps <b>assis</b>.</p><p><b>Physiologiquement</b>, l'être humain est fait pour <b>être debout</b> et <b>en mouvement</b>.</p>"
   },
   {
-    "text": "Message3"
+    "id": "issues",
+    "title": "Ce qui nous empêche d'être bien au travail ?",
+    "text": "<p>Parmi les freins au bien-être au travail, on trouve le <b>stress</b>, la <b>fatigue psychique</b>, le <b>manque de temps</b> pour soi et des maux liés à la <b>posture</b> ou à des <b>gestes répétitifs</b> (douleurs articulaires, mal de dos...).</p>"
   },
   {
-    "text": "Message4"
+    "id": "risks",
+    "title": "Les risques, les conséquences quand on est pas bien au travail ?",
+    "text": "<p>On est moins efficace, on a plus souvent besoin de s'arrêter (arrêts maladie) et on risque l'accident du travail, voir la <b>surcharge</b>, le <b>burn-out</b></p>"
   },
   {
-    "text": "Message5"
+    "id": "tms",
+    "title": "Les TMS et autres risques liés aux postures",
+    "text": "<p>D'après l'<b>INRS</b>, les <b>TMS</b> sont des <b>maladies</b> qui touchent les articulations, les muscles, les tendons, les nerfs ou les ligaments.</p><p>Que ce soit le <b>mal de dos</b> ou les TMS, l'activité professionnelle, une posture ou des gestes répétés peuvent en être à l'origine, maintenir ou aggraver la situation.</p><p>Des problèmes fonctionnels comme des <b>troubles de la digestion</b> ou de la <b>respiration</b> peuvent être la conséquence d'une <b>mauvaise posture</b>.</p>"
+  },
+  {
+    "id": "solutions",
+    "title": "Que peut-on faire ?",
+    "text": "<p>Être bien au travail, ça passe par beaucoup de <b>petites actions</b>.\nPrendre du temps <b>pour soi</b>, prendre dutemps <b>pour les autres</b>.\nS'accorder des <b>petits moments</b> pour se poser, respirer, faire du sport, sedétendre et penser à son corps.</p><p>Et puis on est là, on vous <b>accompagne</b> avec une <b>série de guides</b> pour être bien !</p>"
   }
 ]

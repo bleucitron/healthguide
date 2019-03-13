@@ -47,24 +47,38 @@ export function createAdvices(texts) {
 }
 
 function createAdvice(advice) {
-    const { image, text } = advice;
+    const { id, title,  text } = advice;
 
-    const img = document.createElement('img');
-    const div = document.createElement('div');
+    const bandeau = document.createElement('img');
+    const imageWrapper = document.createElement('div');
+    const article = document.createElement('article');
     const tile = document.createElement('li');
+    const h2 = document.createElement('h2');
     const wrapper = document.createElement('div');
+    const content = document.createElement('div');
+    const contentWrapper = document.createElement('div');
 
-    img.setAttribute('src', '../images/home/bandeau.png');
-    img.setAttribute('alt', 'Background');
+    bandeau.src = '../images/home/bandeau.png';
+    bandeau.alt = 'Background';
 
-    div.className = 'advice';
-    if (image)
-        div.style.backgroundImage = `url('../images/home/${image}')`;
-    div.textContent = text;
+    imageWrapper.style = `background-image: url(../images/home/illus/${id}.png)`;
 
+    article.className = 'advice';
     wrapper.className = 'advice-wrapper';
-    wrapper.append(img);
-    wrapper.append(div);
+    imageWrapper.className = 'img';
+    contentWrapper.className = 'content-wrapper';
+    content.className = 'content';
+
+    h2.textContent = title;
+    content.innerHTML = text;
+
+    wrapper.append(bandeau);
+    wrapper.append(article);
+
+    article.append(h2);
+    article.append(contentWrapper);
+    contentWrapper.append(imageWrapper);
+    contentWrapper.append(content);
 
     tile.className = 'tile';
     tile.append(wrapper);
