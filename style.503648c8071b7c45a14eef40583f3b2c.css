@@ -249,6 +249,8 @@ button {
         width: 70vw;
         margin: 0;
         margin-right: 30vw; }
+        #home .carousel > .content .tile a {
+          color: #0a2d82; }
       #home .carousel > .content .advice-wrapper {
         position: relative;
         max-width: 60rem;
