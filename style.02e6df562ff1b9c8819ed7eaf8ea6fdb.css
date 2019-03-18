@@ -222,17 +222,9 @@ button {
     #home section:nth-of-type(2) {
       background-color: #eee; }
     #home section:nth-of-type(3) {
-      position: relative; }
-      #home section:nth-of-type(3) .background {
-        z-index: -1;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0.6;
-        background-image: url(images/home/contact.png);
-        background-size: cover; }
+      position: relative;
+      background-image: url(images/home/contact.png);
+      background-size: cover; }
   #home .carousel {
     position: relative;
     display: flex;
