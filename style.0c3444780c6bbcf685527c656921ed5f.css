@@ -195,7 +195,8 @@ button {
   #home .blank {
     position: relative;
     height: 30px;
-    background-color: white; }
+    background-color: white;
+    z-index: 1; }
     #home .blank div {
       display: flex;
       flex-direction: column;
@@ -223,7 +224,7 @@ button {
       background-color: #eee; }
     #home section:nth-of-type(3) {
       position: relative;
-      background-image: url(images/home/contact.png);
+      background-image: url(images/home/contact.jpg);
       background-size: cover; }
   #home .carousel {
     position: relative;
@@ -579,10 +580,6 @@ button {
 path {
   cursor: pointer;
   fill: transparent; }
-  path.shoulders {
-    cursor: auto; }
-    path.shoulders:hover {
-      fill: transparent; }
   path:hover {
     fill: #eee;
     opacity: .6; }
